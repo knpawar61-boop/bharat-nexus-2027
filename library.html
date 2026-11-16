@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Library | Bharat Nexus</title>
+    <meta name="description" content="Bharat Nexus Knowledge Library — Study guides, financial literacy, daily motivation, and lifelong learning.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071326'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='36' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* LIBRARY CIRCLE ENTRANCE SPLASH (DARK BLUE + GOLD) */
+        .lib-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 25000;
+            background: radial-gradient(circle at center, #0e2a54 0%, #06142e 55%, #030a18 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .lib-splash.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-circle {
+            width: clamp(190px, 34vw, 250px);
+            height: clamp(190px, 34vw, 250px);
+            border-radius: 50%;
+            background: radial-gradient(circle, #102a56 0%, #071630 100%);
+            border: 2.5px solid #d4af37;
+            box-shadow: 0 0 38px rgba(56, 189, 248, 0.35), 0 0 22px rgba(212, 175, 55, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            animation: circlePop 1.6s ease forwards;
+        }
+
+        .welcome-circle span {
+            font-family: "Cinzel", Georgia, serif;
+            font-size: clamp(17px, 2.6vw, 22px);
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #f5d76e;
+            line-height: 1.4;
+        }
+
+        @keyframes circlePop {
+            0% { transform: scale(0.45); opacity: 0; }
+            45% { transform: scale(1.06); opacity: 1; }
+            85% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.12); opacity: 0.9; }
+        }
+
+        /* LIBRARY PAGE LAYOUT */
+        .lib-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 16, 34, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        body.light-mode .lib-header {
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .lib-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .back-home-btn {
+            background: var(--bg-card);
+            color: var(--gold-soft);
+            border: 1px solid var(--border-gold);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .back-home-btn:hover {
+            background: var(--gold);
+            color: #061022;
+        }
+
+        .lib-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 36px 5% 60px 5%;
+        }
+
+        /* GREETING + SPINNING BORDER TITLE */
+        .lib-hero {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .time-greeting {
+            font-size: clamp(22px, 3.6vw, 34px);
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #38bdf8;
+            margin-bottom: 14px;
+        }
+
+        body.light-mode .time-greeting {
+            color: #0369a1;
+        }
+
+        .lib-title-inner {
+            padding: 14px 30px;
+        }
+
+        .lib-title-inner h1 {
+            font-size: clamp(22px, 3.8vw, 36px);
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .lib-title-inner h1 span {
+            color: var(--gold-soft);
+        }
+
+        .lib-date {
+            margin-top: 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* DAILY MOTIVATIONAL QUOTE CARD */
+        .quote-spotlight {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .quote-label {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--gold-soft);
+            margin-bottom: 10px;
+        }
+
+        .quote-text {
+            font-size: clamp(17px, 2.3vw, 21px);
+            font-weight: 600;
+            color: var(--text-main);
+            max-width: 820px;
+            margin: 0 auto 8px auto;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            color: var(--gold-soft);
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .quote-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* BOOK SHELVES GRID */
+        .lib-controls {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        #lib-search {
+            width: 100%;
+            max-width: 560px;
+            padding: 14px 16px;
+            border: 1.5px solid var(--gold);
+            border-radius: 10px;
+            background: var(--bg-surface);
+            color: var(--text-main);
+            font-size: 15.5px;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .book-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .bookmark-btn {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .bookmark-btn.saved {
+            background: var(--gold);
+            color: #061022;
+            font-weight: 700;
+        }
+
+        .book-card h3 {
+            color: var(--text-main);
+            font-size: 19px;
+        }
+
+        .book-card p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+        }
+
+        .open-book-btn {
+            margin-top: auto;
+            background: var(--gold);
+            color: #061022;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .open-book-btn:hover {
+            background: #ffffff;
+        }
+
+        /* READER MODAL */
+        .reader-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 15000;
+            background: rgba(3, 8, 20, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .reader-modal[hidden] {
+            display: none;
+        }
+
+        .reader-box {
+            background: var(--bg-surface);
+            border: 1.5px solid var(--gold);
+            border-radius: 16px;
+            max-width: 720px;
+            width: 100%;
+            max-height: 86vh;
+            overflow-y: auto;
+            padding: 26px;
+        }
+
+        .reader-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .reader-head h2 {
+            color: var(--gold-soft);
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .reader-body ul {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: var(--text-main);
+            font-size: 15.5px;
+            line-height: 1.75;
+        }
+
+        .reader-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- DARK BLUE CIRCLE ENTRANCE SPLASH -->
+    <div id="lib-splash" class="lib-splash" role="dialog" aria-label="Welcome to Library">
+        <div class="welcome-circle">
+            <span id="circle-text">WELCOME MY FRIEND</span>
+        </div>
+        <button type="button" id="lib-skip-btn" class="skip-intro-btn">Skip →</button>
+    </div>
+
+    <!-- SUBTLE '7' WATERMARK -->
+    <div class="bg-watermark-7" aria-hidden="true"><span>7</span></div>
+
+    <!-- HEADER -->
+    <header class="lib-header">
+        <div class="lib-nav-left">
+            <a href="index.html" class="back-home-btn" id="back-home-link">← Smart Citizen Hub</a>
+            <a href="terms.html" class="back-home-btn" id="terms-link">⚖️ Terms &amp; Privacy</a>
+        </div>
+
+        <div class="topbar-controls">
+            <button type="button" id="lib-voice-btn" class="utility-btn" aria-pressed="false">🔇 Voice: OFF</button>
+            <button type="button" id="lib-font-btn" class="utility-btn">A+</button>
+            <button type="button" id="lib-theme-btn" class="utility-btn">☀</button>
+            <div class="lang-switcher">
+                <button type="button" class="lang-btn active" data-lang="en">EN</button>
+                <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+                <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="lib-container">
+        <!-- TIME-BASED GREETING + 1.5PX ROTATING BORDER TITLE -->
+        <div class="lib-hero">
+            <p id="time-greeting" class="time-greeting">GOOD MORNING</p>
+
+            <div class="rotating-border-card">
+                <div class="rotating-inner lib-title-inner">
+                    <h1 id="lib-title">BHARAT NEXUS <span>LIBRARY</span></h1>
+                </div>
+            </div>
+
+            <p id="lib-date" class="lib-date"></p>
+        </div>
+
+        <!-- DAILY MOTIVATIONAL QUOTE -->
+        <section class="quote-spotlight">
+            <span class="quote-label" id="quote-label">DAILY MOTIVATION</span>
+            <p id="quote-text" class="quote-text"></p>
+            <p id="quote-author" class="quote-author"></p>
+            <div class="quote-actions">
+                <button type="button" id="next-quote-btn" class="secondary-btn">Next Quote ↻</button>
+                <button type="button" id="speak-quote-btn" class="secondary-btn">🔊 Listen Quote</button>
+            </div>
+        </section>
+
+        <!-- SEARCH & BOOK SHELVES -->
+        <div class="lib-controls">
+            <label for="lib-search" class="sr-only">Search library shelves</label>
+            <input id="lib-search" type="search" placeholder="Search study notes, market basics, English, digital skills..." autocomplete="off">
+
+            <div class="filter-pills">
+                <button type="button" class="filter-btn active" data-shelf="all" id="sh-all">All Shelves</button>
+                <button type="button" class="filter-btn" data-shelf="saved" id="sh-saved">★ Saved</button>
+                <button type="button" class="filter-btn" data-shelf="study" id="sh-study">Study &amp; Exams</button>
+                <button type="button" class="filter-btn" data-shelf="finance" id="sh-finance">Money &amp; Market Basics</button>
+                <button type="button" class="filter-btn" data-shelf="tech" id="sh-tech">Tech &amp; Office</button>
+                <button type="button" class="filter-btn" data-shelf="life" id="sh-life">Life &amp; Elders</button>
+            </div>
+        </div>
+
+        <div id="book-grid" class="book-grid"></div>
+    </main>
+
+    <!-- DISTRACTION-FREE READER MODAL -->
+    <div id="reader-modal" class="reader-modal" role="dialog" aria-modal="true" hidden>
+        <div class="reader-box">
+            <div class="reader-head">
+                <h2 id="reader-title"></h2>
+                <button type="button" id="reader-close-top" class="department-close">✕</button>
+            </div>
+            <div id="reader-body" class="reader-body"></div>
+            <div class="reader-actions">
+                <button type="button" id="reader-speak-btn" class="dept-action-btn">🔊 Read Aloud</button>
+                <button type="button" id="reader-close-btn" class="department-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>BHARAT NEXUS</h3>
+        <p>ज्ञान • संधी • प्रगती • विश्वास</p>
+        <p class="footer-links">
+            <a href="index.html" id="foot-home">Smart Citizen Hub</a> •
+            <a href="terms.html" id="foot-terms">Terms &amp; Privacy</a>
+        </p>
+        <p class="copyright">© 2027 Bharat Nexus. Knowledge Library.</p>
+    </footer>
+
+    <script>
+        (function () {
+            "use strict";
+
+            let lang = "en";
+            let activeShelf = "all";
+            let searchVal = "";
+            let voiceOn = false;
+            let currentBook = null;
+            let quoteIndex = 0;
+
+            const labels = {
+                en: {
+                    circle: "WELCOME MY FRIEND",
+                    morning: "GOOD MORNING",
+                    afternoon: "GOOD AFTERNOON",
+                    evening: "GOOD EVENING",
+                    night: "GOOD NIGHT",
+                    title: 'BHARAT NEXUS <span>LIBRARY</span>',
+                    backHome: "← Smart Citizen Hub",
+                    terms: "⚖️ Terms & Privacy",
+                    quoteLabel: "DAILY MOTIVATION",
+                    nextQuote: "Next Quote ↻",
+                    hearQuote: "🔊 Listen Quote",
+                    searchPh: "Search study notes, market basics, English, digital skills...",
+                    shAll: "All Shelves",
+                    shSaved: "★ Saved",
+                    shStudy: "Study & Exams",
+                    shFinance: "Money & Market Basics",
+                    shTech: "Tech & Office",
+                    shLife: "Life & Elders",
+                    openBtn: "Open & Read →",
+                    saveBtn: "☆ Save",
+                    savedBtn: "★ Saved",
+                    closeBtn: "Close",
+                    readAloud: "🔊 Read Aloud",
+                    emptySaved: "No saved notes yet. Tap '☆ Save' on any card to bookmark it here!"
+                },
+                hi: {
+                    circle: "स्वागत है मेरे मित्र",
+                    morning: "सुप्रभात (GOOD MORNING)",
+                    afternoon: "शुभ दोपहर (GOOD AFTERNOON)",
+                    evening: "शुभ संध्या (GOOD EVENING)",
+                    night: "शुभ रात्रि (GOOD NIGHT)",
+                    title: 'भारत नेक्सस <span>लाइब्रेरी</span>',
+                    backHome: "← स्मार्ट सिटीजन हब",
+                    terms: "⚖️ नियम व गोपनीयता",
+                    quoteLabel: "आज का प्रेरक विचार",
+                    nextQuote: "अगला विचार ↻",
+                    hearQuote: "🔊 सुनें",
+                    searchPh: "खोजें: परीक्षा, शेयर बाजार बेसिक्स, Excel, अंग्रेजी...",
+                    shAll: "सभी विषय",
+                    shSaved: "★ सहेजे गए",
+                    shStudy: "पढ़ाई और परीक्षा",
+                    shFinance: "धन व बाजार की समझ",
+                    shTech: "टेक और ऑफिस",
+                    shLife: "जीवन और बुजुर्ग",
+                    openBtn: "पढ़ें →",
+                    saveBtn: "☆ सहेजें",
+                    savedBtn: "★ सहेजा गया",
+                    closeBtn: "बंद करें",
+                    readAloud: "🔊 पढ़कर सुनाएं",
+                    emptySaved: "अभी कोई नोट सहेजा नहीं गया है। किसी भी कार्ड पर '☆ सहेजें' दबाएं!"
+                },
+                mr: {
+                    circle: "स्वागत आहे मित्रा",
+                    morning: "शुभ सकाळ (GOOD MORNING)",
+                    afternoon: "शुभ दुपार (GOOD AFTERNOON)",
+                    evening: "शुभ संध्याकाळ (GOOD EVENING)",
+                    night: "शुभ रात्री (GOOD NIGHT)",
+                    title: 'भारत नेक्सस <span>लायब्ररी</span>',
+                    backHome: "← स्मार्ट सिटीझन हब",
+                    terms: "⚖️ नियम व गोपनीयता",
+                    quoteLabel: "आजचा प्रेरक विचार",
+                    nextQuote: "पुढील विचार ↻",
+                    hearQuote: "🔊 ऐका",
+                    searchPh: "शोधा: अभ्यास, शेअर बाजार माहिती, Excel, इंग्रजी...",
+                    shAll: "सर्व विभाग",
+                    shSaved: "★ जतन केलेले",
+                    shStudy: "अभ्यास व परीक्षा",
+                    shFinance: "पैसे व बाजार माहिती",
+                    shTech: "टेक व ऑफिस",
+                    shLife: "जीवन व ज्येष्ठ",
+                    openBtn: "वाचा →",
+                    saveBtn: "☆ जतन करा",
+                    savedBtn: "★ जतन केले",
+                    closeBtn: "बंद करा",
+                    readAloud: "🔊 वाचून दाखवा",
+                    emptySaved: "अजून काहीही जतन केलेले नाही. कोणत्याही कार्डवर '☆ जतन करा' दाबा!"
+                }
+            };
+
+            const quotes = [
+                {
+                    en: { q: "Dream is not that which you see while sleeping; it is something that does not let you sleep.", a: "— Dr. A.P.J. Abdul Kalam" },
+                    hi: { q: "सपना वह नहीं है जो आप सोते समय देखते हैं, सपना वह है जो आपको सोने नहीं देता।", a: "— डॉ. ए.पी.जे. अब्दुल कलाम" },
+                    mr: { q: "स्वप्न ते नसते जे आपण झोपेत पाहतो, स्वप्न ते असते जे आपल्याला झोपू देत नाही.", a: "— डॉ. ए.पी.जे. अब्दुल कलाम" }
+                },
+                {
+                    en: { q: "Arise, awake, and stop not until the goal is reached.", a: "— Swami Vivekananda" },
+                    hi: { q: "उठो, जागो और तब तक मत रुको जब तक लक्ष्य प्राप्त न हो जाए।", a: "— स्वामी विवेकानंद" },
+                    mr: { q: "उठा, जागे व्हा आणि ध्येय साध्य होईपर्यंत थांबू नका.", a: "— स्वामी विवेकानंद" }
+                },
+                {
+                    en: { q: "Small daily improvements over time lead to stunning results.", a: "— Bharat Nexus Daily Note" },
+                    hi: { q: "रोज़ किया गया छोटा-सा सुधार भी समय के साथ बड़ा परिणाम देता है।", a: "— भारत नेक्सस नोट" },
+                    mr: { q: "दररोज केलेली छोटी सुधारणा देखील वेळेनुसार मोठे यश घडवते.", a: "— भारत नेक्सस नोट" }
+                },
+                {
+                    en: { q: "Education is the most powerful tool you can use to change your future calmly.", a: "— Knowledge Library" },
+                    hi: { q: "शिक्षा सबसे शक्तिशाली माध्यम है जिससे आप अपना भविष्य शांत और मजबूत बना सकते हैं।", a: "— नॉलेज लाइब्रेरी" },
+                    mr: { q: "शिक्षण हे असे शक्तिशाली साधन आहे ज्यामुळे तुम्ही तुमचे भविष्य शांतपणे घडवू शकता.", a: "— नॉलेज लायब्ररी" }
+                }
+            ];
+
+            const books = [
+                {
+                    id: "market-basics",
+                    shelf: "finance",
+                    time: "4 min read",
+                    en: {
+                        badge: "Money & Market Basics",
+                        title: "What Are Sensex, Nifty & Mutual Funds? (Beginner Guide)",
+                        summary: "Understand how India's stock market works safely—educational basics with zero gambling or tips.",
+                        points: [
+                            "<strong>What is Sensex / Nifty?</strong> Think of them as scoreboards of India's top 30 (Sensex) and top 50 (Nifty) biggest companies.",
+                            "<strong>What is a Mutual Fund SIP?</strong> Instead of guessing one risky stock, a Systematic Investment Plan (SIP) puts a small fixed amount every month across many top companies.",
+                            "<strong>Golden Safety Rule:</strong> Never join WhatsApp/Telegram groups promising 'double money in 7 days'—real wealth grows steadily over 5–10+ years.",
+                            "<em>Note: Educational awareness only—not investment advice.</em>"
+                        ]
+                    },
+                    hi: {
+                        badge: "धन व बाजार की समझ",
+                        title: "Sensex, Nifty और Mutual Fund क्या हैं? (आसान भाषा में)",
+                        summary: "बिना किसी जोखिम या टिप्स के भारत के बाजार और SIP का बुनियादी मतलब समझें।",
+                        points: [
+                            "<strong>Sensex और Nifty क्या हैं?</strong> ये भारत की शीर्ष 30 (Sensex) और शीर्ष 50 (Nifty) बड़ी कंपनियों के प्रदर्शन का स्कोरबोर्ड हैं।",
+                            "<strong>SIP क्या है?</strong> एक ही शेयर में जुआ खेलने के बजाय, हर महीने थोड़ी-थोड़ी राशि कई बड़ी कंपनियों में नियमित बचाना।",
+                            "<strong>सुरक्षा नियम:</strong> '7 दिन में पैसा डबल' का वादा करने वाले टेलीग्राम/व्हाट्सएप ग्रुप से हमेशा दूर रहें।",
+                            "<em>नोट: यह केवल सामान्य वित्तीय शिक्षा है, निवेश सलाह नहीं।</em>"
+                        ]
+                    },
+                    mr: {
+                        badge: "पैसे व बाजार माहिती",
+                        title: "Sensex, Nifty आणि Mutual Fund म्हणजे काय? (सोपी माहिती)",
+                        summary: "कोणत्याही टीप्स किंवा जुगाराशिवाय भारतातील बाजार आणि SIP ची मूलभूत संकल्पना समजून घ्या.",
+                        points: [
+                            "<strong>Sensex आणि Nifty म्हणजे काय?</strong> हे भारतातील सर्वोत्तम ३० (Sensex) आणि ५० (Nifty) मोठ्या कंपन्यांचे प्रगती पत्रक (स्कोअरबोर्ड) आहेत.",
+                            "<strong>SIP म्हणजे काय?</strong> एका कंपनीवर धोका पत्करण्यापेक्षा दरमहा ठरलेली छोटी रक्कम अनेक मोठ्या कंपन्यांमध्ये गुंतवण्याची पद्धत.",
+                            "<strong>सुरक्षा नियम:</strong> '७ दिवसांत पैसे दुप्पट' असे सांगणाऱ्या व्हॉट्सअ‍ॅप/टेलिग्राम गटांपासून नेहमी दूर रहा.",
+                            "<em>टीप: ही फक्त शैक्षणिक माहिती आहे, गुंतवणूक सल्ला नाही.</em>"
+                        ]
+                    }
+                },
+                {
+                    id: "exam-memory",
+                    shelf: "study",
+                    time: "3 min read",
+                    en: {
+                        badge: "Study & Exams",
+                        title: "Active Recall: Remember 3x More Before Exams",
+                        summary: "Stop re-reading textbooks endlessly—use this calm science-backed memory trick.",
+                        points: [
+                            "<strong>Read Once, Close Book:</strong> After reading 2 pages, close the book and write down key points from memory.",
+                            "<strong>Check Gaps:</strong> Open the book only to see what you missed and mark it.",
+                            "<strong>25-Minute Blocks:</strong> Keep your phone in another room for 25 minutes, then take a 5-minute water break."
+                        ]
+                    },
+                    hi: {
+                        badge: "पढ़ाई और परीक्षा",
+                        title: "Active Recall: परीक्षा से पहले 3 गुना तेजी से याद रखें",
+                        summary: "बार-बार किताब पढ़ने के बजाय याददाश्त मजबूत करने का वैज्ञानिक और शांत तरीका।",
+                        points: [
+                            "<strong>एक बार पढ़ें, किताब बंद करें:</strong> 2 पन्ने पढ़ने के बाद किताब बंद कर दें और याद आया हुआ कागज पर लिखें।",
+                            "<strong>छूटी बातें जांचें:</strong> अब किताब खोलकर देखें कि क्या छूट गया और उस पर निशान लगाएं।",
+                            "<strong>25-मिनट नियम:</strong> 25 मिनट फोन अलग रखकर पढ़ें, फिर 5 मिनट आराम करें।"
+                        ]
+                    },
+                    mr: {
+                        badge: "अभ्यास व परीक्षा",
+                        title: "Active Recall: परीक्षेपूर्वी ३ पट जास्त लक्षात ठेवण्याची पद्धत",
+                        summary: "पुन्हा पुन्हा पुस्तक वाचण्याऐवजी मेंदूची स्मरणशक्ती वाढवणारी सोपी पद्धत.",
+                        points: [
+                            "<strong>एकदा वाचा, पुस्तक बंद करा:</strong> २ पाने वाचल्यानंतर पुस्तक बंद करून लक्षात राहिलेले मुद्दे कागदावर लिहा.",
+                            "<strong>राहिलेले मुद्दे तपासा:</strong> आता पुस्तक उघडून काय विसरले ते पाहून खूण करा.",
+                            "<strong>२५-मिनिटांचा टप्पा:</strong> २५ मिनिटे मोबाईल बाजूला ठेवून अभ्यास करा आणि नंतर ५ मिनिटे विश्रांती घ्या."
+                        ]
+                    }
+                },
+                {
+                    id: "email-etiquette",
+                    shelf: "tech",
+                    time: "3 min read",
+                    en: {
+                        badge: "Tech & Office",
+                        title: "How to Write a Professional Job / College Email",
+                        summary: "Ready templates when sending your Bharat Nexus Resume PDF to HR or professors.",
+                        points: [
+                            "<strong>Clear Subject Line:</strong> 'Application for Office Assistant Role — [Your Name]'.",
+                            "<strong>Short Body (4 Lines):</strong> Greet politely → state role → mention 2 key skills → 'Please find my resume attached.'",
+                            "<strong>PDF File Name:</strong> Always save your PDF as <code>FirstName_LastName_Resume.pdf</code> (not <code>index.pdf</code>!)."
+                        ]
+                    },
+                    hi: {
+                        badge: "टेक और ऑफिस",
+                        title: "जॉब या कॉलेज के लिए सही प्रोफेशनल ईमेल कैसे लिखें",
+                        summary: "अपना भारत नेक्सस रिज्यूमे PDF भेजते समय HR या प्रोफेसर को लिखने का आसान तरीका।",
+                        points: [
+                            "<strong>स्पष्ट Subject लिखें:</strong> 'Application for Office Assistant — [आपका नाम]'।",
+                            "<strong>4 लाइन का छोटा संदेश:</strong> नम्र अभिवादन → पद का नाम → 2 मुख्य कौशल → 'Please find my resume attached.'",
+                            "<strong>PDF का नाम सही रखें:</strong> फाइल का नाम हमेशा <code>YourName_Resume.pdf</code> रखें।"
+                        ]
+                    },
+                    mr: {
+                        badge: "टेक व ऑफिस",
+                        title: "नोकरी किंवा कॉलेजसाठी व्यावसायिक ईमेल कसा लिहावा",
+                        summary: "तुमचा भारत नेक्सस रिझ्युमे PDF पाठवताना HR किंवा प्राध्यापकांना लिहिण्याचा योग्य नमुना.",
+                        points: [
+                            "<strong>स्पष्ट Subject लिहा:</strong> 'Application for Office Assistant — [तुमचे नाव]'.",
+                            "<strong>४ ओळींचा सोपा मजकूर:</strong> नम्र सुरुवात → पदाचे नाव → २ मुख्य कौशल्ये → 'Please find my resume attached.'",
+                            "<strong>PDF चे नाव योग्य ठेवा:</strong> फाईलचे नाव नेहमी <code>YourName_Resume.pdf</code> असे ठेवा."
+                        ]
+                    }
+                },
+                {
+                    id: "elder-digital-peace",
+                    shelf: "life",
+                    time: "3 min read",
+                    en: {
+                        badge: "Life & Elders",
+                        title: "Peaceful Digital Habits for Parents & Grandparents",
+                        summary: "Everyday clarity for older users on phone calls, battery health, and calm reading.",
+                        points: [
+                            "<strong>Bigger Display:</strong> Turn on A+ on Bharat Nexus or increase System Font Size in phone settings.",
+                            "<strong>Unknown Calls:</strong> You never have to rush or decide anything on an unknown phone call—hang up and ask family.",
+                            "<strong>Battery Health:</strong> Avoid charging overnight to 100% daily; unplug around 85–90% when possible."
+                        ]
+                    },
+                    hi: {
+                        badge: "जीवन और बुजुर्ग",
+                        title: "माता-पिता और बुजुर्गों के लिए शांत डिजिटल आदतें",
+                        summary: "बड़े अक्षरों में पढ़ने, अनजान कॉल से बचने और फोन को सही रखने की सरल बातें।",
+                        points: [
+                            "<strong>बड़े अक्षर:</strong> पढ़ने में आसानी के लिए ऊपर A+ दबाएं या फोन Settings में Font Size बड़ा करें।",
+                            "<strong>अनजान कॉल पर जल्दबाजी नहीं:</strong> किसी भी अनजान कॉल पर घबराएं नहीं—फोन काटें और परिवार से बात करें।",
+                            "<strong>बैटरी देखभाल:</strong> फोन को पूरी रात चार्ज पर छोड़ने से बचें।"
+                        ]
+                    },
+                    mr: {
+                        badge: "जीवन व ज्येष्ठ",
+                        title: "पालक व ज्येष्ठांसाठी शांत डिजिटल सवयी",
+                        summary: "मोठ्या अक्षरांत वाचणे, अनोळखी कॉल टाळणे आणि फोनची काळजी घेण्याच्या सोप्या टिप्स.",
+                        points: [
+                            "<strong>मोठे अक्षर:</strong> वाचायला सोपे जाण्यासाठी वरचे A+ बटण दाबा किंवा फोन Settings मधून Font Size वाढवा.",
+                            "<strong>अनोळखी कॉलवर घाई नको:</strong> अनोळखी फोनवर कोणी घाई करत असल्यास कॉल बंद करून कुटुंबाशी चर्चा करा.",
+                            "<strong>बॅटरी काळजी:</strong> फोन रात्रभर चार्जिंगला लावून ठेवणे शक्यतो टाळा."
+                        ]
+                    }
+                }
+            ];
+
+            function getSavedIds() {
+                try {
+                    return JSON.parse(localStorage.getItem("bn_saved_books") || "[]");
+                } catch (err) {
+                    return [];
+                }
+            }
+
+            function toggleSaveId(id) {
+                let list = getSavedIds();
+                if (list.includes(id)) list = list.filter((x) => x !== id);
+                else list.push(id);
+                try {
+                    localStorage.setItem("bn_saved_books", JSON.stringify(list));
+                } catch (err) {}
+                renderBooks();
+            }
+
+            function speak(text) {
+                if (!("speechSynthesis" in window)) return;
+                try {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(text);
+                    u.lang = lang === "hi" ? "hi-IN" : lang === "mr" ? "mr-IN" : "en-IN";
+                    window.speechSynthesis.speak(u);
+                } catch (err) {}
+            }
+
+            /* EXACT TIME GREETING: 4:00 AM / 12:00 PM / 6:30 PM / 8:00 PM */
+            function updateGreetingAndDate() {
+                const now = new Date();
+                const mins = now.getHours() * 60 + now.getMinutes();
+                let key = "night";
+                if (mins >= 240 && mins < 720) key = "morning";         // 4:00 AM - 11:59 AM
+                else if (mins >= 720 && mins < 1110) key = "afternoon"; // 12:00 PM - 6:29 PM
+                else if (mins >= 1110 && mins < 1200) key = "evening";  // 6:30 PM - 7:59 PM
+                else key = "night";                                     // 8:00 PM - 3:59 AM
+
+                document.getElementById("time-greeting").textContent = labels[lang][key];
+                document.getElementById("lib-date").textContent = now.toLocaleDateString(
+                    lang === "hi" ? "hi-IN" : lang === "mr" ? "mr-IN" : "en-IN",
+                    { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+                );
+            }
+
+            function renderQuote() {
+                const q = quotes[quoteIndex % quotes.length][lang];
+                document.getElementById("quote-text").textContent = `"${q.q}"`;
+                document.getElementById("quote-author").textContent = q.a;
+            }
+
+            function renderBooks() {
+                const grid = document.getElementById("book-grid");
+                const saved = getSavedIds();
+                const query = searchVal.trim().toLowerCase();
+
+                const list = books.filter((b) => {
+                    if (activeShelf === "saved" && !saved.includes(b.id)) return false;
+                    if (activeShelf !== "all" && activeShelf !== "saved" && b.shelf !== activeShelf) return false;
+                    if (!query) return true;
+                    const d = b[lang];
+                    return (d.title + " " + d.summary + " " + d.badge + " " + d.points.join(" ")).toLowerCase().includes(query);
+                });
+
+                if (!list.length) {
+                    const msg = activeShelf === "saved" ? labels[lang].emptySaved : "No matching guides found.";
+                    grid.innerHTML = `<div class="empty-state">${msg}</div>`;
+                    return;
+                }
+
+                grid.innerHTML = list.map((b) => {
+                    const d = b[lang];
+                    const isSaved = saved.includes(b.id);
+                    return `
+                        <article class="book-card">
+                            <div class="book-top">
+                                <span class="guide-badge">${d.badge}</span>
+                                <span class="book-meta">${b.time}</span>
+                            </div>
+                            <h3>${d.title}</h3>
+                            <p>${d.summary}</p>
+                            <div style="display:flex; gap:8px; margin-top:auto;">
+                                <button type="button" class="open-book-btn" style="flex:1;" data-open-book="${b.id}">${labels[lang].openBtn}</button>
+                                <button type="button" class="bookmark-btn ${isSaved ? "saved" : ""}" data-save-book="${b.id}">
+                                    ${isSaved ? labels[lang].savedBtn : labels[lang].saveBtn}
+                                </button>
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+            }
+
+            function applyLang(newLang) {
+                if (!labels[newLang]) newLang = "en";
+                lang = newLang;
+                document.documentElement.lang = lang;
+                try { localStorage.setItem("bn_lang", lang); } catch (err) {}
+
+                const t = labels[lang];
+                document.getElementById("circle-text").textContent = t.circle;
+                document.getElementById("lib-title").innerHTML = t.title;
+                document.getElementById("back-home-link").textContent = t.backHome;
+                document.getElementById("terms-link").textContent = t.terms;
+                document.getElementById("quote-label").textContent = t.quoteLabel;
+                document.getElementById("next-quote-btn").textContent = t.nextQuote;
+                document.getElementById("speak-quote-btn").textContent = t.hearQuote;
+                document.getElementById("lib-search").placeholder = t.searchPh;
+                document.getElementById("sh-all").textContent = t.shAll;
+                document.getElementById("sh-saved").textContent = t.shSaved;
+                document.getElementById("sh-study").textContent = t.shStudy;
+                document.getElementById("sh-finance").textContent = t.shFinance;
+                document.getElementById("sh-tech").textContent = t.shTech;
+                document.getElementById("sh-life").textContent = t.shLife;
+                document.getElementById("reader-speak-btn").textContent = t.readAloud;
+                document.getElementById("reader-close-btn").textContent = t.closeBtn;
+
+                document.querySelectorAll(".lang-btn").forEach((b) => {
+                    b.classList.toggle("active", b.dataset.lang === lang);
+                });
+
+                updateGreetingAndDate();
+                renderQuote();
+                renderBooks();
+            }
+
+            function init() {
+                // Daily automatic quote index by day of month
+                quoteIndex = new Date().getDate() % quotes.length;
+
+                // Load saved preferences from Home page
+                try {
+                    const savedLang = localStorage.getItem("bn_lang");
+                    if (savedLang && labels[savedLang]) lang = savedLang;
+                    if (localStorage.getItem("bn_large_text") === "1") {
+                        document.body.classList.add("large-text");
+                        document.getElementById("lib-font-btn").classList.add("active");
+                    }
+                    if (localStorage.getItem("bn_light_mode") === "1") {
+                        document.body.classList.add("light-mode");
+                        document.getElementById("lib-theme-btn").textContent = "🌙";
+                    }
+                } catch (err) {}
+
+                // Circle splash (~1.8s)
+                const splash = document.getElementById("lib-splash");
+                const skipBtn = document.getElementById("lib-skip-btn");
+                const timer = setTimeout(() => splash.classList.add("hide"), 1800);
+                skipBtn.addEventListener("click", () => {
+                    clearTimeout(timer);
+                    splash.classList.add("hide");
+                });
+
+                // Top controls
+                document.querySelectorAll(".lang-btn").forEach((b) => {
+                    b.addEventListener("click", () => applyLang(b.dataset.lang));
+                });
+
+                document.getElementById("lib-font-btn").addEventListener("click", function () {
+                    const isLarge = document.body.classList.toggle("large-text");
+                    this.classList.toggle("active", isLarge);
+                    try { localStorage.setItem("bn_large_text", isLarge ? "1" : "0"); } catch (err) {}
+                });
+
+                document.getElementById("lib-theme-btn").addEventListener("click", function () {
+                    const isLight = document.body.classList.toggle("light-mode");
+                    this.textContent = isLight ? "🌙" : "☀";
+                    try { localStorage.setItem("bn_light_mode", isLight ? "1" : "0"); } catch (err) {}
+                });
+
+                document.getElementById("lib-voice-btn").addEventListener("click", function () {
+                    voiceOn = !voiceOn;
+                    this.textContent = voiceOn ? "🔊 Voice: ON" : "🔇 Voice: OFF";
+                    this.classList.toggle("active", voiceOn);
+                    if (voiceOn) {
+                        const q = quotes[quoteIndex % quotes.length][lang];
+                        speak(labels[lang].circle + ". " + q.q);
+                    } else if ("speechSynthesis" in window) {
+                        window.speechSynthesis.cancel();
+                    }
+                });
+
+                document.getElementById("next-quote-btn").addEventListener("click", () => {
+                    quoteIndex++;
+                    renderQuote();
+                });
+
+                document.getElementById("speak-quote-btn").addEventListener("click", () => {
+                    const q = quotes[quoteIndex % quotes.length][lang];
+                    speak(q.q + " " + q.a);
+                });
+
+                // Search & Shelf tabs
+                document.getElementById("lib-search").addEventListener("input", (e) => {
+                    searchVal = e.target.value;
+                    renderBooks();
+                });
+
+                document.querySelectorAll("[data-shelf]").forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        activeShelf = btn.dataset.shelf;
+                        document.querySelectorAll("[data-shelf]").forEach((b) => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        renderBooks();
+                    });
+                });
+
+                // Book clicks & Reader Modal
+                const modal = document.getElementById("reader-modal");
+                document.getElementById("book-grid").addEventListener("click", (e) => {
+                    const saveBtn = e.target.closest("[data-save-book]");
+                    if (saveBtn) {
+                        toggleSaveId(saveBtn.dataset.saveBook);
+                        return;
+                    }
+                    const openBtn = e.target.closest("[data-open-book]");
+                    if (openBtn) {
+                        currentBook = books.find((b) => b.id === openBtn.dataset.openBook);
+                        if (!currentBook) return;
+                        const d = currentBook[lang];
+                        document.getElementById("reader-title").textContent = d.title;
+                        document.getElementById("reader-body").innerHTML = `<ul>${d.points.map((p) => `<li>${p}</li>`).join("")}</ul>`;
+                        modal.hidden = false;
+                    }
+                });
+
+                function closeModal() {
+                    modal.hidden = true;
+                    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+                }
+
+                document.getElementById("reader-close-btn").addEventListener("click", closeModal);
+                document.getElementById("reader-close-top").addEventListener("click", closeModal);
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) closeModal();
+                });
+
+                document.getElementById("reader-speak-btn").addEventListener("click", () => {
+                    if (!currentBook) return;
+                    const plain = document.getElementById("reader-body").textContent;
+                    speak(currentBook[lang].title + ". " + plain);
+                });
+
+                applyLang(lang);
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>

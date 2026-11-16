@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Nexus | Smart Citizen Hub</title>
+    <meta name="description"
+        content="Bharat Nexus — Practical tools, financial clarity, online safety, and lifelong learning for every generation.">
+    <meta property="og:title" content="Bharat Nexus | Smart Citizen Hub">
+    <meta property="og:description" content="Practical digital tools, financial clarity, and educational resources for every generation.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071326'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='36' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 3-SECOND SUNRISE WELCOME INTRO (PLAYS ONCE PER SESSION) -->
+    <div id="welcome-splash" class="welcome-splash" role="dialog" aria-label="Welcome to Bharat Nexus">
+        <div class="lab-grid-bg" aria-hidden="true"></div>
+        <div class="sunrise-glow" aria-hidden="true"></div>
+
+        <!-- Subtle Developer Desk Silhouette (Right Side) -->
+        <svg class="lab-dev-art" viewBox="0 0 260 200" aria-hidden="true">
+            <rect x="40" y="38" width="130" height="84" rx="8" fill="#0d1f3d" stroke="#38bdf8" stroke-width="2" />
+            <line x1="56" y1="60" x2="132" y2="60" stroke="#d4af37" stroke-width="3" stroke-linecap="round" />
+            <line x1="56" y1="76" x2="150" y2="76" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+            <line x1="56" y1="92" x2="115" y2="92" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+            <rect x="92" y="122" width="26" height="16" fill="#1e3a5f" />
+            <rect x="68" y="138" width="74" height="6" rx="3" fill="#38bdf8" opacity="0.6" />
+            <circle cx="204" cy="74" r="18" fill="#102544" stroke="#d4af37" stroke-width="2" />
+            <path d="M174 148 C174 112, 234 112, 234 148 Z" fill="#102544" stroke="#d4af37" stroke-width="2" />
+        </svg>
+
+        <!-- Converging Arrows -->
+        <div class="arrows-stage" aria-hidden="true">
+            <span class="converge-arrow arrow-tl">➔</span>
+            <span class="converge-arrow arrow-tr">➔</span>
+            <span class="converge-arrow arrow-bl">➔</span>
+            <span class="converge-arrow arrow-br">➔</span>
+            <span class="converge-arrow arrow-top">➔</span>
+            <span class="converge-arrow arrow-bot">➔</span>
+        </div>
+
+        <div class="splash-center">
+            <p class="splash-top-title">WELCOME TO SUCCESS WORLD</p>
+            <div class="splash-brand-wrap">
+                <div class="sunrise-arc" aria-hidden="true"></div>
+                <h2 class="splash-brand">BHARAT NEXUS</h2>
+            </div>
+            <p class="splash-motto">ज्ञान • संधी • प्रगती • विश्वास</p>
+        </div>
+
+        <button type="button" id="skip-intro-btn" class="skip-intro-btn">Skip →</button>
+    </div>
+
+    <!-- SUBTLE FAVORITE NUMBER '7' SIGNATURE WATERMARK -->
+    <div class="bg-watermark-7" aria-hidden="true">
+        <span>7</span>
+    </div>
+
+    <!-- MOBILE SIDEBAR BACKDROP -->
+    <div id="sidebar-overlay" class="sidebar-overlay" hidden></div>
+
+    <!-- MAIN APP SHELL (LEFT SIDEBAR + RIGHT WORKSPACE) -->
+    <div class="app-shell">
+
+        <!-- LEFT DEVELOPER SIDEBAR PANEL -->
+        <aside id="sidebar" class="sidebar" aria-label="Workspace Navigation">
+            <div class="sidebar-brand">
+                <h2 class="logo">BHARAT <span>NEXUS</span></h2>
+                <p class="sidebar-tagline">ज्ञान • संधी • प्रगती • विश्वास</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#home" class="side-link active">
+                    <span class="side-icon" aria-hidden="true">🏠</span>
+                    <span data-i18n="navHome">Smart Citizen Hub</span>
+                </a>
+                <a href="#resume-builder" class="side-link">
+                    <span class="side-icon" aria-hidden="true">📄</span>
+                    <span data-i18n="navResume">Resume Maker</span>
+                </a>
+                <a href="#money-dashboard" class="side-link">
+                    <span class="side-icon" aria-hidden="true">📊</span>
+                    <span data-i18n="navMoney">EMI &amp; Savings</span>
+                </a>
+                <a href="#safety-guide" class="side-link">
+                    <span class="side-icon" aria-hidden="true">🛡️</span>
+                    <span data-i18n="navSafety">Online Safety</span>
+                </a>
+                <a href="#education" class="side-link">
+                    <span class="side-icon" aria-hidden="true">🎓</span>
+                    <span data-i18n="navEducation">Education &amp; Notes</span>
+                </a>
+                <a href="#team" class="side-link">
+                    <span class="side-icon" aria-hidden="true">👥</span>
+                    <span data-i18n="navTeam">Our Team</span>
+                </a>
+
+                <!-- SEPARATE LIBRARY PAGE BUTTON (WITH 1.5PX GLOWING BORDER) -->
+                <a href="library.html" class="side-library-btn rotating-border-card">
+                    <span class="rotating-inner">
+                        <span class="side-icon" aria-hidden="true">📚</span>
+                        <span data-i18n="navLibrary">Knowledge Library →</span>
+                    </span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="terms.html" class="side-sub-link" data-i18n="navTerms">⚖️ Terms &amp; Privacy</a>
+                <p class="side-year">© 2027 Bharat Nexus</p>
+            </div>
+        </aside>
+
+        <!-- RIGHT MAIN WORKSPACE -->
+        <div class="main-workspace">
+
+            <!-- TOP COMFORT & LANGUAGE BAR -->
+            <header class="topbar">
+                <button type="button" id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Open Menu" aria-expanded="false">
+                    ☰ <span data-i18n="menuLabel">Menu</span>
+                </button>
+
+                <div class="topbar-controls">
+                    <button type="button" id="voice-toggle-btn" class="utility-btn" aria-pressed="false" title="Bharat Voice Guide">
+                        🔇 <span data-i18n="voiceOff">Voice: OFF</span>
+                    </button>
+                    <button type="button" id="font-size-btn" class="utility-btn" aria-pressed="false" title="Larger Reading Text">
+                        A+
+                    </button>
+                    <button type="button" id="theme-toggle-btn" class="utility-btn" aria-pressed="false" title="Switch Light or Blue Mode">
+                        ☀
+                    </button>
+
+                    <div class="lang-switcher" role="group" aria-label="Choose Language">
+                        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+                        <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+                        <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- HERO SECTION: SMART CITIZEN HUB WITH 1.5PX MOVING BORDER -->
+            <main id="home" class="hero-section">
+                <p class="tagline" data-i18n="heroTagline">
+                    KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST
+                </p>
+
+                <div class="hub-title-glow rotating-border-card">
+                    <div class="rotating-inner hub-title-inner">
+                        <h1 id="hero-title" data-i18n="heroTitle">SMART CITIZEN <span>HUB</span></h1>
+                    </div>
+                </div>
+
+                <p class="intro" data-i18n="heroIntro">
+                    Everyday tools, financial clarity, and practical knowledge crafted for students, families, and senior citizens.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#resume-builder" class="start-button" data-i18n="heroCta">BUILD RESUME</a>
+                    <a href="#money-dashboard" class="outline-hero-btn" data-i18n="heroCtaMoney">EMI &amp; SAVINGS</a>
+                    <a href="library.html" class="outline-hero-btn" data-i18n="heroCtaLib">OPEN LIBRARY</a>
+                </div>
+            </main>
+
+            <!-- OPTION C: RESUME & BIODATA MAKER -->
+            <section id="resume-builder">
+                <h2 data-i18n="resHeading">Resume &amp; Biodata Maker</h2>
+                <p class="section-subtitle" data-i18n="resSub">
+                    Fill in your details below to preview a clean A4 resume live and export it as a PDF.
+                </p>
+
+                <div class="resume-workspace">
+                    <form id="resume-form" class="resume-form" autocomplete="off">
+                        <div class="form-actions-top">
+                            <button type="button" id="fill-sample-btn" class="secondary-btn" data-i18n="btnSample">
+                                Fill Sample Example
+                            </button>
+                            <button type="button" id="clear-resume-btn" class="secondary-btn danger-outline" data-i18n="btnClear">
+                                Clear Form
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-name" data-i18n="lblName">Full Name</label>
+                            <input id="res-name" type="text" placeholder="e.g., Aarav Sharma">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-role" data-i18n="lblRole">Target Role / Title</label>
+                            <input id="res-role" type="text" placeholder="e.g., Office Assistant / B.Sc. Fresher">
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="res-phone" data-i18n="lblPhone">Phone Number</label>
+                                <input id="res-phone" type="tel" placeholder="e.g., +91 98XXXXXXXX">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="res-email" data-i18n="lblEmail">Email Address</label>
+                                <input id="res-email" type="email" placeholder="e.g., aarav@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-city" data-i18n="lblCity">City &amp; State</label>
+                            <input id="res-city" type="text" placeholder="e.g., Nashik, Maharashtra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-summary" data-i18n="lblSummary">Short About Me / Career Goal</label>
+                            <textarea id="res-summary" rows="3"
+                                placeholder="2–3 clear lines about your strengths and goal."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-education" data-i18n="lblEducation">Education (College / School / Year)</label>
+                            <textarea id="res-education" rows="3"
+                                placeholder="e.g., B.Com — Pune University (2026)&#10;12th HSC — State Board (2023)"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-skills" data-i18n="lblSkills">Skills (Separate with commas)</label>
+                            <input id="res-skills" type="text" placeholder="e.g., MS Excel, Tally, HTML & CSS, Communication">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-experience" data-i18n="lblExperience">Projects / Internship / Experience</label>
+                            <textarea id="res-experience" rows="3"
+                                placeholder="e.g., College Event Coordinator&#10;Built personal portfolio project"></textarea>
+                        </div>
+
+                        <button type="button" id="print-resume-btn" class="print-btn" data-i18n="btnPrint">
+                            Download / Print Clean PDF
+                        </button>
+                    </form>
+
+                    <div class="resume-preview-wrap">
+                        <div class="preview-label" data-i18n="previewLabel">Live Paper Preview (A4 Ready)</div>
+                        <article id="resume-preview" class="resume-paper" aria-label="Live Resume Preview">
+                            <div class="paper-header">
+                                <h3 id="prev-name">Your Full Name</h3>
+                                <p id="prev-role" class="paper-role">Target Job Role / Student Title</p>
+                                <p id="prev-contact" class="paper-contact">Phone • Email • City, State</p>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>ABOUT ME</h4>
+                                <p id="prev-summary">Write 2–3 clear lines about yourself and your career goal.</p>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>EDUCATION</h4>
+                                <div id="prev-education" class="paper-multiline">Add your college, degree, school, and year.</div>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>KEY SKILLS</h4>
+                                <ul id="prev-skills" class="paper-skills">
+                                    <li>Communication</li>
+                                    <li>MS Office</li>
+                                    <li>Problem Solving</li>
+                                </ul>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>PROJECTS &amp; EXPERIENCE</h4>
+                                <div id="prev-experience" class="paper-multiline">Add college projects, internships, or volunteer experience.</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPTION B: VISUAL EMI & SAVINGS DASHBOARD -->
+            <section id="money-dashboard">
+                <h2 data-i18n="moneyHeading">Visual EMI &amp; Savings Dashboard</h2>
+                <p class="section-subtitle" data-i18n="moneySub">
+                    See real loan interest vs. monthly savings growth visually before making money decisions.
+                </p>
+
+                <div class="bento-dashboard">
+                    <!-- WIDGET 1: EMI REALITY CHECK + LIVE DONUT CHART -->
+                    <div class="bento-card">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="emiTitle">EMI Reality Check</h3>
+                            <span class="bento-tag" data-i18n="emiTag">Loan &amp; Purchase</span>
+                        </div>
+
+                        <div class="calc-inputs">
+                            <div class="calc-field">
+                                <label for="emi-amount" data-i18n="lblLoanAmt">Item / Loan Amount (₹)</label>
+                                <input id="emi-amount" type="number" min="1000" max="10000000" step="1000" value="50000">
+                            </div>
+                            <div class="calc-row-2">
+                                <div class="calc-field">
+                                    <label for="emi-rate" data-i18n="lblRate">Interest (% / Year)</label>
+                                    <input id="emi-rate" type="number" min="0" max="60" step="0.5" value="14">
+                                </div>
+                                <div class="calc-field">
+                                    <label for="emi-months" data-i18n="lblMonths">Months</label>
+                                    <input id="emi-months" type="number" min="3" max="120" step="1" value="12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="donut-area">
+                            <svg class="donut-svg" viewBox="0 0 120 120" aria-label="Principal vs Interest Chart">
+                                <circle class="donut-track" cx="60" cy="60" r="46"></circle>
+                                <circle id="emi-interest-arc" class="donut-interest" cx="60" cy="60" r="46"></circle>
+                            </svg>
+                            <div class="donut-stats">
+                                <p class="stat-big"><span data-i18n="lblMonthlyEmi">Monthly EMI:</span> <strong id="out-emi">₹4,489</strong></p>
+                                <p><span class="dot dot-principal"></span> <span data-i18n="lblPrincipal">Original Amount:</span> <strong id="out-principal">₹50,000</strong></p>
+                                <p><span class="dot dot-interest"></span> <span data-i18n="lblExtraInt">Extra Interest:</span> <strong id="out-interest">₹3,872</strong></p>
+                                <p><span data-i18n="lblTotalPay">Total You Pay:</span> <strong id="out-total-pay">₹53,872</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WIDGET 2: MONTHLY SAVINGS GROWTH + LIVE BAR CHART -->
+                    <div class="bento-card">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="savTitle">Monthly Savings Growth</h3>
+                            <span class="bento-tag tag-green" data-i18n="savTag">Compounding</span>
+                        </div>
+
+                        <div class="calc-inputs">
+                            <div class="calc-field">
+                                <label for="sav-monthly" data-i18n="lblSavMonthly">Monthly Saving (₹)</label>
+                                <input id="sav-monthly" type="number" min="100" max="500000" step="100" value="1500">
+                            </div>
+                            <div class="calc-row-2">
+                                <div class="calc-field">
+                                    <label for="sav-rate" data-i18n="lblSavRate">Return (% / Year)</label>
+                                    <input id="sav-rate" type="number" min="1" max="25" step="0.5" value="10">
+                                </div>
+                                <div class="calc-field">
+                                    <label for="sav-years" data-i18n="lblSavYears">Years (1–10)</label>
+                                    <input id="sav-years" type="number" min="1" max="10" step="1" value="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="savings-bars" class="bar-chart" aria-label="Yearly Savings Growth Bars">
+                            <!-- Rendered live by script.js -->
+                        </div>
+
+                        <div class="savings-summary-row">
+                            <span><span data-i18n="lblDeposited">You Put In:</span> <strong id="out-deposited">₹90,000</strong></span>
+                            <span><span data-i18n="lblFinalValue">Final Value:</span> <strong id="out-final-sav">₹1,16,156</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- WIDGET 3: TOP INSIGHTS SUMMARY (FULL WIDTH) -->
+                    <div class="bento-card bento-insights">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="insightsTitle">Top Financial Insights</h3>
+                            <span class="bento-tag" data-i18n="insightsTag">Plain Summary</span>
+                        </div>
+                        <ul id="money-insights-list" class="insights-list">
+                            <!-- Populated live by script.js -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPTION A: CALM ONLINE SAFETY GUIDE -->
+            <section id="safety-guide">
+                <h2 data-i18n="safetyHeading">Online Safety Guide</h2>
+                <p class="section-subtitle" data-i18n="safetySub">
+                    Tap any common real-life situation below to see the safe action immediately.
+                </p>
+
+                <div class="safety-scenarios" role="group" aria-label="Common Online Scenarios">
+                    <button type="button" class="scenario-btn active" data-scenario="qr" data-i18n="scenQr">
+                        📱 QR Code Sent to "Receive" Money
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="jobfee" data-i18n="scenJob">
+                        💼 Job / Internship Asks Registration Fee
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="kyc" data-i18n="scenKyc">
+                        🏦 SMS Link Says "Bank / SIM Blocked Today"
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="call" data-i18n="scenCall">
+                        📞 Threatening Video Call ("Parcel / Police")
+                    </button>
+                </div>
+
+                <div id="safety-result-box" class="safety-result-box" aria-live="polite">
+                    <!-- Populated cleanly by script.js -->
+                </div>
+            </section>
+
+            <!-- EDUCATIONAL & SKILL LEARNING SECTION -->
+            <section id="education">
+                <h2 data-i18n="eduHeading">Education &amp; Practical Skill Guides</h2>
+
+                <p class="section-subtitle" data-i18n="eduSub">
+                    Learn practical skills, read built-in study notes, and grow at your own pace.
+                </p>
+
+                <div class="search-box-wrap">
+                    <label for="education-search" class="sr-only">Search courses, skills, study guides</label>
+                    <input
+                        id="education-search"
+                        type="search"
+                        placeholder="Search coding, Excel, English, interview prep, digital basics..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="filter-pills" role="group" aria-label="Filter education topics">
+                    <button type="button" class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
+                    <button type="button" class="filter-btn" data-filter="courses" data-i18n="filterCourses">Free Learning</button>
+                    <button type="button" class="filter-btn" data-filter="career" data-i18n="filterCareer">Career &amp; Skills</button>
+                    <button type="button" class="filter-btn" data-filter="digital" data-i18n="filterDigital">Digital Basics (All Ages)</button>
+                </div>
+
+                <p id="education-results-count" class="results-count" aria-live="polite"></p>
+
+                <div id="education-list" class="opportunity-grid">
+                    <!-- Populated cleanly by script.js -->
+                </div>
+            </section>
+
+            <!-- MEET OUR TEAM SECTION -->
+            <section id="team">
+                <h2 data-i18n="teamHeading">Meet Our Team</h2>
+                <p class="section-subtitle" data-i18n="teamSub">
+                    The dedicated team building Bharat Nexus for a smarter 2027.
+                </p>
+
+                <!-- FOUNDER CARD: UNIQUE FONT & LARGER NAME -->
+                <div class="founder-card">
+                    <div class="team-avatar founder-avatar" aria-hidden="true">KP</div>
+                    <span class="team-badge" data-i18n="founderBadge">FOUNDER &amp; LEAD CREATOR</span>
+                    <h3 class="founder-name">KRISHNA PAWAR</h3>
+                    <p class="team-bio" data-i18n="founderBio">
+                        Leading the 2027 Bharat Nexus vision—building calm, practical digital tools and education for every generation in India.
+                    </p>
+                </div>
+
+                <!-- CORE TEAM MEMBERS: CLEAN SIMPLE FONT -->
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">AM</div>
+                        <span class="team-role" data-i18n="member1Role">Guide &amp; Mentor</span>
+                        <h4 class="member-name">Akshada Mahale</h4>
+                        <p class="team-bio" data-i18n="member1Bio">
+                            Guides quality, clarity, and user experience so every page stays calm, simple, and helpful for all ages.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">AS</div>
+                        <span class="team-role" data-i18n="member2Role">Project Researcher</span>
+                        <h4 class="member-name">Aadesh Salve</h4>
+                        <p class="team-bio" data-i18n="member2Bio">
+                            Researches practical student needs, educational notes, and real-world challenges to solve next.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">VA</div>
+                        <span class="team-role" data-i18n="member3Role">Project Researcher</span>
+                        <h4 class="member-name">Vishal Aadke</h4>
+                        <p class="team-bio" data-i18n="member3Bio">
+                            Finds accurate skill resources, verifies content quality, and helps shape useful everyday guides.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">RJ</div>
+                        <span class="team-role" data-i18n="member4Role">Community &amp; Outreach Lead</span>
+                        <h4 class="member-name">Ritesh Jaware</h4>
+                        <p class="team-bio" data-i18n="member4Bio">
+                            Connects with youth, students, and local communities to share Bharat Nexus and gather honest feedback.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer>
+                <h3>BHARAT NEXUS</h3>
+                <p>ज्ञान • संधी • प्रगती • विश्वास</p>
+                <p class="footer-links">
+                    <a href="library.html" data-i18n="navLibraryLink">Knowledge Library</a> •
+                    <a href="terms.html" data-i18n="navTermsLink">Terms &amp; Privacy</a>
+                </p>
+                <p class="copyright">© 2027 Bharat Nexus. Public Utility &amp; Learning Platform.</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
