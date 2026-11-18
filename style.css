@@ -1,6 +1,6 @@
 /* =================================================
    BHARAT NEXUS - SMART CITIZEN HUB STYLESHEET
-   Pure Black + Huge Crystal 7 + Liquid Gold Flare
+   Pure Black + Huge Crystal 7 + Luminous Jewel Aura
 ================================================= */
 
 :root {
@@ -74,7 +74,7 @@ body.large-text textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 20px 24px 20px;
+    padding: 10px 20px 24px 20px;
     background: #030305;
     overflow: hidden;
 }
@@ -94,52 +94,27 @@ body.large-text textarea {
     isolation: isolate;
 }
 
-/* LUXURY CHAMPAGNE-WHITE LIGHT SHAFT + RAZOR GOLDEN HORIZON FLARE */
+/* VIBRANT PRISMATIC JEWEL AURA (LASER CYAN + ROYAL AMETHYST + DIAMOND CORE) */
 .crystal-aura {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: clamp(320px, 60vw, 680px);
-    height: clamp(380px, 74vh, 600px);
-    transform: translate(-50%, -44%) scaleY(0.84);
-    background:
-        linear-gradient(
-            90deg,
-            transparent 26%,
-            rgba(255, 248, 224, 0.08) 43%,
-            rgba(245, 215, 110, 0.24) 50%,
-            rgba(255, 248, 224, 0.08) 57%,
-            transparent 74%
-        ),
-        radial-gradient(
-            ellipse 46% 16% at 50% 82%,
-            rgba(245, 215, 110, 0.42) 0%,
-            rgba(212, 175, 55, 0.16) 45%,
-            transparent 76%
-        );
-    filter: blur(10px);
+    width: clamp(340px, 60vw, 680px);
+    height: clamp(300px, 52vw, 560px);
+    transform: translate(-50%, -46%) scale(0.75);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(0, 240, 255, 0.65) 26%,
+        rgba(121, 40, 202, 0.5) 54%,
+        rgba(3, 3, 5, 0) 74%
+    );
+    filter: blur(42px);
     opacity: 0;
     z-index: 0;
     pointer-events: none;
-    transition: opacity 0.16s ease, transform 0.16s ease;
-}
-
-.crystal-aura::after {
-    content: "";
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    bottom: 16%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(212, 175, 55, 0.35) 20%,
-        rgba(255, 251, 235, 0.98) 50%,
-        rgba(212, 175, 55, 0.35) 80%,
-        transparent 100%
-    );
-    box-shadow: 0 0 18px 2px rgba(245, 215, 110, 0.55);
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .crystal-7-img {
@@ -150,7 +125,7 @@ body.large-text textarea {
     max-width: 100%;
     object-fit: contain;
     mix-blend-mode: screen;
-    filter: saturate(0) brightness(0.8) contrast(2.3);
+    filter: saturate(0) brightness(0.85) contrast(2.3);
     -webkit-mask-image: radial-gradient(ellipse 32% 50% at 50% 49%, #000 72%, transparent 94%);
     mask-image: radial-gradient(ellipse 32% 50% at 50% 49%, #000 72%, transparent 94%);
     transform-origin: center center;
@@ -160,30 +135,32 @@ body.large-text textarea {
 .crystal-reveal-brand {
     position: relative;
     z-index: 3;
-    margin-top: -54px;
+    margin-top: -38px;
     font-family: "Cinzel", Georgia, serif;
-    font-size: clamp(24px, 4vw, 42px);
+    font-size: clamp(24px, 4.2vw, 42px);
     font-weight: 700;
-    letter-spacing: 7px;
+    letter-spacing: 6px;
     color: #ffffff;
-    text-shadow: 0 0 24px rgba(255, 248, 220, 0.55), 0 0 36px rgba(212, 175, 55, 0.65);
+    text-shadow: 0 0 25px rgba(0, 240, 255, 0.75), 0 0 50px rgba(121, 40, 202, 0.5);
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transform: translateY(22px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
 }
 
 .crystal-reveal-brand span {
     color: #f5d76e;
+    text-shadow: 0 0 24px rgba(245, 215, 110, 0.85);
 }
 
-/* RISES SMOOTHLY ON HOVER OR TAP */
+/* RISES SMOOTHLY WITH PRISMATIC SHIMMER ON HOVER OR TAP */
 .crystal-stage:hover .crystal-aura,
 .crystal-stage.active .crystal-aura {
     opacity: 1;
-    transform: translate(-50%, -50%) scaleY(1);
-    transition: opacity 1s ease, transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+    animation: jewelAuraPulse 6s ease-in-out infinite alternate;
+    transition: opacity 0.95s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .crystal-stage:hover .crystal-reveal-brand,
@@ -193,6 +170,21 @@ body.large-text textarea {
     transition: opacity 0.95s ease, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+@keyframes jewelAuraPulse {
+    0% {
+        filter: blur(40px) hue-rotate(0deg);
+        transform: translate(-50%, -50%) scale(1.06);
+    }
+    50% {
+        filter: blur(48px) hue-rotate(25deg);
+        transform: translate(-50%, -50%) scale(1.14);
+    }
+    100% {
+        filter: blur(40px) hue-rotate(0deg);
+        transform: translate(-50%, -50%) scale(1.06);
+    }
+}
+
 @keyframes slowSpin7 {
     0% { transform: rotateY(-22deg); }
     50% { transform: rotateY(22deg); }
@@ -200,7 +192,7 @@ body.large-text textarea {
 }
 
 /* =================================================
-   2. 1.5PX 4-SIDED ROTATING COLOR BORDER (FIXED)
+   2. 1.5PX 4-SIDED ROTATING COLOR BORDER
 ================================================= */
 .rotating-border-card {
     position: relative;
