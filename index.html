@@ -11,7 +11,7 @@
     <meta property="og:description" content="Practical digital tools, financial clarity, and educational resources for every generation.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071326'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='36' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050507'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='36' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
@@ -20,14 +20,11 @@
 
 <body>
 
-    <div class="bg-watermark-7" aria-hidden="true">
-        <span>7</span>
-    </div>
-
     <div id="sidebar-overlay" class="sidebar-overlay" hidden></div>
 
     <div class="app-shell">
 
+        <!-- LEFT DASHBOARD SIDEBAR -->
         <aside id="sidebar" class="sidebar" aria-label="Workspace Navigation">
             <div class="sidebar-brand">
                 <h2 class="logo">BHARAT <span>NEXUS</span></h2>
@@ -37,6 +34,10 @@
             <nav class="sidebar-nav">
                 <a href="#home" class="side-link active">
                     <span class="side-icon" aria-hidden="true">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="#hub-overview" class="side-link">
+                    <span class="side-icon" aria-hidden="true">✨</span>
                     <span data-i18n="navHome">Smart Citizen Hub</span>
                 </a>
                 <a href="#resume-builder" class="side-link">
@@ -74,6 +75,7 @@
             </div>
         </aside>
 
+        <!-- RIGHT MAIN WORKSPACE -->
         <div class="main-workspace">
 
             <header class="topbar">
@@ -88,7 +90,7 @@
                     <button type="button" id="font-size-btn" class="utility-btn" aria-pressed="false" title="Larger Reading Text">
                         A+
                     </button>
-                    <button type="button" id="theme-toggle-btn" class="utility-btn" aria-pressed="false" title="Switch Light or Blue Mode">
+                    <button type="button" id="theme-toggle-btn" class="utility-btn" aria-pressed="false" title="Switch Light or Dark Mode">
                         ☀
                     </button>
 
@@ -100,14 +102,17 @@
                 </div>
             </header>
 
-            <main id="home" class="hero-section">
-                <div id="crystal-stage" class="crystal-stage" tabindex="0" role="button" aria-pressed="false" aria-label="Touch or hover 7 to reveal Bharat Nexus">
+            <!-- FULL BLACK OPENING SCREEN: ONLY HUGE CRYSTAL '7' IN CENTER -->
+            <main id="home" class="hero-stage-only">
+                <div id="crystal-stage" class="crystal-stage" tabindex="0" role="button" aria-pressed="false" aria-label="Bharat Nexus 7">
                     <div class="crystal-aura" aria-hidden="true"></div>
+                    <img src="image_55665a78.jpg" alt="Bharat Nexus 7" class="crystal-7-img">
                     <div class="crystal-reveal-brand" aria-hidden="true">BHARAT <span>NEXUS</span></div>
-                    <img src="image_55665a78.jpg" alt="Bharat Nexus Crystal 7 Emblem" class="crystal-7-img">
                 </div>
-                <p class="crystal-hint" data-i18n="crystalHint">Hover or tap 7</p>
+            </main>
 
+            <!-- SMART CITIZEN HUB OVERVIEW (BELOW THE 7) -->
+            <section id="hub-overview" class="hub-overview-section">
                 <p class="tagline" data-i18n="heroTagline">
                     KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST
                 </p>
@@ -127,8 +132,9 @@
                     <a href="#money-dashboard" class="outline-hero-btn" data-i18n="heroCtaMoney">EMI &amp; SAVINGS</a>
                     <a href="library.html" class="outline-hero-btn" data-i18n="heroCtaLib">OPEN LIBRARY</a>
                 </div>
-            </main>
+            </section>
 
+            <!-- OPTION C: RESUME & BIODATA MAKER -->
             <section id="resume-builder">
                 <h2 data-i18n="resHeading">Resume &amp; Biodata Maker</h2>
                 <p class="section-subtitle" data-i18n="resSub">
@@ -238,6 +244,7 @@
                 </div>
             </section>
 
+            <!-- OPTION B: VISUAL EMI & SAVINGS DASHBOARD -->
             <section id="money-dashboard">
                 <h2 data-i18n="moneyHeading">Visual EMI &amp; Savings Dashboard</h2>
                 <p class="section-subtitle" data-i18n="moneySub">
@@ -325,6 +332,7 @@
                 </div>
             </section>
 
+            <!-- OPTION A: CALM ONLINE SAFETY GUIDE -->
             <section id="safety-guide">
                 <h2 data-i18n="safetyHeading">Online Safety Guide</h2>
                 <p class="section-subtitle" data-i18n="safetySub">
@@ -350,6 +358,7 @@
                 </div>
             </section>
 
+            <!-- EDUCATIONAL & SKILL LEARNING SECTION -->
             <section id="education">
                 <h2 data-i18n="eduHeading">Education &amp; Practical Skill Guides</h2>
 
@@ -380,6 +389,7 @@
                 </div>
             </section>
 
+            <!-- MEET OUR TEAM SECTION -->
             <section id="team">
                 <h2 data-i18n="teamHeading">Meet Our Team</h2>
                 <p class="section-subtitle" data-i18n="teamSub">
