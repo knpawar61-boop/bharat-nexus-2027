@@ -20,57 +20,14 @@
 
 <body>
 
-    <!-- 3-SECOND SUNRISE WELCOME INTRO (PLAYS ONCE PER SESSION) -->
-    <div id="welcome-splash" class="welcome-splash" role="dialog" aria-label="Welcome to Bharat Nexus">
-        <div class="lab-grid-bg" aria-hidden="true"></div>
-        <div class="sunrise-glow" aria-hidden="true"></div>
-
-        <!-- Subtle Developer Desk Silhouette (Right Side) -->
-        <svg class="lab-dev-art" viewBox="0 0 260 200" aria-hidden="true">
-            <rect x="40" y="38" width="130" height="84" rx="8" fill="#0d1f3d" stroke="#38bdf8" stroke-width="2" />
-            <line x1="56" y1="60" x2="132" y2="60" stroke="#d4af37" stroke-width="3" stroke-linecap="round" />
-            <line x1="56" y1="76" x2="150" y2="76" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
-            <line x1="56" y1="92" x2="115" y2="92" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
-            <rect x="92" y="122" width="26" height="16" fill="#1e3a5f" />
-            <rect x="68" y="138" width="74" height="6" rx="3" fill="#38bdf8" opacity="0.6" />
-            <circle cx="204" cy="74" r="18" fill="#102544" stroke="#d4af37" stroke-width="2" />
-            <path d="M174 148 C174 112, 234 112, 234 148 Z" fill="#102544" stroke="#d4af37" stroke-width="2" />
-        </svg>
-
-        <!-- Converging Arrows -->
-        <div class="arrows-stage" aria-hidden="true">
-            <span class="converge-arrow arrow-tl">➔</span>
-            <span class="converge-arrow arrow-tr">➔</span>
-            <span class="converge-arrow arrow-bl">➔</span>
-            <span class="converge-arrow arrow-br">➔</span>
-            <span class="converge-arrow arrow-top">➔</span>
-            <span class="converge-arrow arrow-bot">➔</span>
-        </div>
-
-        <div class="splash-center">
-            <p class="splash-top-title">WELCOME TO SUCCESS WORLD</p>
-            <div class="splash-brand-wrap">
-                <div class="sunrise-arc" aria-hidden="true"></div>
-                <h2 class="splash-brand">BHARAT NEXUS</h2>
-            </div>
-            <p class="splash-motto">ज्ञान • संधी • प्रगती • विश्वास</p>
-        </div>
-
-        <button type="button" id="skip-intro-btn" class="skip-intro-btn">Skip →</button>
-    </div>
-
-    <!-- SUBTLE FAVORITE NUMBER '7' SIGNATURE WATERMARK -->
     <div class="bg-watermark-7" aria-hidden="true">
         <span>7</span>
     </div>
 
-    <!-- MOBILE SIDEBAR BACKDROP -->
     <div id="sidebar-overlay" class="sidebar-overlay" hidden></div>
 
-    <!-- MAIN APP SHELL (LEFT SIDEBAR + RIGHT WORKSPACE) -->
     <div class="app-shell">
 
-        <!-- LEFT DEVELOPER SIDEBAR PANEL -->
         <aside id="sidebar" class="sidebar" aria-label="Workspace Navigation">
             <div class="sidebar-brand">
                 <h2 class="logo">BHARAT <span>NEXUS</span></h2>
@@ -103,7 +60,6 @@
                     <span data-i18n="navTeam">Our Team</span>
                 </a>
 
-                <!-- SEPARATE LIBRARY PAGE BUTTON (WITH 1.5PX GLOWING BORDER) -->
                 <a href="library.html" class="side-library-btn rotating-border-card">
                     <span class="rotating-inner">
                         <span class="side-icon" aria-hidden="true">📚</span>
@@ -118,10 +74,8 @@
             </div>
         </aside>
 
-        <!-- RIGHT MAIN WORKSPACE -->
         <div class="main-workspace">
 
-            <!-- TOP COMFORT & LANGUAGE BAR -->
             <header class="topbar">
                 <button type="button" id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Open Menu" aria-expanded="false">
                     ☰ <span data-i18n="menuLabel">Menu</span>
@@ -146,8 +100,14 @@
                 </div>
             </header>
 
-            <!-- HERO SECTION: SMART CITIZEN HUB WITH 1.5PX MOVING BORDER -->
             <main id="home" class="hero-section">
+                <div id="crystal-stage" class="crystal-stage" tabindex="0" role="button" aria-pressed="false" aria-label="Touch or hover 7 to reveal Bharat Nexus">
+                    <div class="crystal-aura" aria-hidden="true"></div>
+                    <div class="crystal-reveal-brand" aria-hidden="true">BHARAT <span>NEXUS</span></div>
+                    <img src="image_55665a78.jpg" alt="Bharat Nexus Crystal 7 Emblem" class="crystal-7-img">
+                </div>
+                <p class="crystal-hint" data-i18n="crystalHint">Hover or tap 7</p>
+
                 <p class="tagline" data-i18n="heroTagline">
                     KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST
                 </p>
@@ -169,7 +129,6 @@
                 </div>
             </main>
 
-            <!-- OPTION C: RESUME & BIODATA MAKER -->
             <section id="resume-builder">
                 <h2 data-i18n="resHeading">Resume &amp; Biodata Maker</h2>
                 <p class="section-subtitle" data-i18n="resSub">
@@ -279,7 +238,6 @@
                 </div>
             </section>
 
-            <!-- OPTION B: VISUAL EMI & SAVINGS DASHBOARD -->
             <section id="money-dashboard">
                 <h2 data-i18n="moneyHeading">Visual EMI &amp; Savings Dashboard</h2>
                 <p class="section-subtitle" data-i18n="moneySub">
@@ -287,7 +245,6 @@
                 </p>
 
                 <div class="bento-dashboard">
-                    <!-- WIDGET 1: EMI REALITY CHECK + LIVE DONUT CHART -->
                     <div class="bento-card">
                         <div class="bento-card-head">
                             <h3 data-i18n="emiTitle">EMI Reality Check</h3>
@@ -325,7 +282,6 @@
                         </div>
                     </div>
 
-                    <!-- WIDGET 2: MONTHLY SAVINGS GROWTH + LIVE BAR CHART -->
                     <div class="bento-card">
                         <div class="bento-card-head">
                             <h3 data-i18n="savTitle">Monthly Savings Growth</h3>
@@ -350,7 +306,6 @@
                         </div>
 
                         <div id="savings-bars" class="bar-chart" aria-label="Yearly Savings Growth Bars">
-                            <!-- Rendered live by script.js -->
                         </div>
 
                         <div class="savings-summary-row">
@@ -359,20 +314,17 @@
                         </div>
                     </div>
 
-                    <!-- WIDGET 3: TOP INSIGHTS SUMMARY (FULL WIDTH) -->
                     <div class="bento-card bento-insights">
                         <div class="bento-card-head">
                             <h3 data-i18n="insightsTitle">Top Financial Insights</h3>
                             <span class="bento-tag" data-i18n="insightsTag">Plain Summary</span>
                         </div>
                         <ul id="money-insights-list" class="insights-list">
-                            <!-- Populated live by script.js -->
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- OPTION A: CALM ONLINE SAFETY GUIDE -->
             <section id="safety-guide">
                 <h2 data-i18n="safetyHeading">Online Safety Guide</h2>
                 <p class="section-subtitle" data-i18n="safetySub">
@@ -395,11 +347,9 @@
                 </div>
 
                 <div id="safety-result-box" class="safety-result-box" aria-live="polite">
-                    <!-- Populated cleanly by script.js -->
                 </div>
             </section>
 
-            <!-- EDUCATIONAL & SKILL LEARNING SECTION -->
             <section id="education">
                 <h2 data-i18n="eduHeading">Education &amp; Practical Skill Guides</h2>
 
@@ -427,18 +377,15 @@
                 <p id="education-results-count" class="results-count" aria-live="polite"></p>
 
                 <div id="education-list" class="opportunity-grid">
-                    <!-- Populated cleanly by script.js -->
                 </div>
             </section>
 
-            <!-- MEET OUR TEAM SECTION -->
             <section id="team">
                 <h2 data-i18n="teamHeading">Meet Our Team</h2>
                 <p class="section-subtitle" data-i18n="teamSub">
                     The dedicated team building Bharat Nexus for a smarter 2027.
                 </p>
 
-                <!-- FOUNDER CARD: UNIQUE FONT & LARGER NAME -->
                 <div class="founder-card">
                     <div class="team-avatar founder-avatar" aria-hidden="true">KP</div>
                     <span class="team-badge" data-i18n="founderBadge">FOUNDER &amp; LEAD CREATOR</span>
@@ -448,7 +395,6 @@
                     </p>
                 </div>
 
-                <!-- CORE TEAM MEMBERS: CLEAN SIMPLE FONT -->
                 <div class="team-grid">
                     <div class="team-card">
                         <div class="team-avatar" aria-hidden="true">AM</div>
@@ -488,7 +434,6 @@
                 </div>
             </section>
 
-            <!-- FOOTER -->
             <footer>
                 <h3>BHARAT NEXUS</h3>
                 <p>ज्ञान • संधी • प्रगती • विश्वास</p>
