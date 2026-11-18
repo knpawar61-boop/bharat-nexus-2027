@@ -1,8 +1,7 @@
 /* ==========================================
    BHARAT NEXUS - SMART CITIZEN HUB SCRIPT
-   Sunrise Intro + Blue Sidebar + Option C +
-   Option B Visual Dashboard + Option A Safety +
-   Education Notes + Team + Bharat Voice
+   Crystal 7 Centerpiece + Blue Sidebar +
+   Option C + Option B + Option A + Voice
 ========================================== */
 
 (function () {
@@ -30,6 +29,7 @@
             menuLabel: "Menu",
             voiceOff: "Voice: OFF",
             voiceOn: "Voice: ON",
+            crystalHint: "Hover or tap 7",
             heroTagline: "KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST",
             heroTitle: 'SMART CITIZEN <span>HUB</span>',
             heroIntro:
@@ -124,6 +124,7 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज़: बंद",
             voiceOn: "आवाज़: चालू",
+            crystalHint: "7 को छूकर देखें",
             heroTagline: "ज्ञान • अवसर • प्रगति • विश्वास",
             heroTitle: 'स्मार्ट सिटीजन <span>हब</span>',
             heroIntro: "छात्रों, परिवारों और वरिष्ठ नागरिकों के लिए रोजमर्रा के टूल्स, वित्तीय स्पष्टता और व्यावहारिक ज्ञान।",
@@ -212,6 +213,7 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज: बंद",
             voiceOn: "आवाज: चालू",
+            crystalHint: "७ ला स्पर्श करा",
             heroTagline: "ज्ञान • संधी • प्रगती • विश्वास",
             heroTitle: 'स्मार्ट सिटीझन <span>हब</span>',
             heroIntro: "विद्यार्थी, कुटुंबे आणि ज्येष्ठ नागरिकांसाठी दैनंदिन टूल्स, आर्थिक स्पष्टता आणि व्यावहारिक ज्ञान.",
@@ -299,49 +301,37 @@
             else utter.lang = "en-IN";
             utter.rate = 0.98;
             window.speechSynthesis.speak(utter);
-        } catch (err) {
-            // Ignore speech API issues safely
-        }
+        } catch (err) {}
     }
 
-    /* 3. 3-SECOND SUNRISE WELCOME SPLASH */
-    function setupWelcomeSplash() {
-        const splash = document.getElementById("welcome-splash");
-        const skipBtn = document.getElementById("skip-intro-btn");
-        if (!splash) return;
+    /* 3. INTERACTIVE CRYSTAL '7' STAGE (MOBILE TAP + DESKTOP HOVER) */
+    function setupCrystalStage() {
+        const stage = document.getElementById("crystal-stage");
+        if (!stage) return;
 
-        let alreadySeen = false;
-        try {
-            alreadySeen = sessionStorage.getItem("bn_intro_seen") === "1";
-        } catch (err) {
-            alreadySeen = false;
+        function toggleStage(forceState) {
+            const isActive = typeof forceState === "boolean" ? forceState : !stage.classList.contains("active");
+            stage.classList.toggle("active", isActive);
+            stage.setAttribute("aria-pressed", String(isActive));
         }
 
-        if (alreadySeen) {
-            splash.style.display = "none";
-            return;
-        }
+        stage.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleStage();
+        });
 
-        function closeSplash() {
-            splash.classList.add("splash-hide");
-            try {
-                sessionStorage.setItem("bn_intro_seen", "1");
-            } catch (err) {
-                // Ignore
+        stage.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleStage();
             }
-            setTimeout(() => {
-                splash.style.display = "none";
-            }, 700);
-        }
+        });
 
-        const timer = setTimeout(closeSplash, 3000);
-
-        if (skipBtn) {
-            skipBtn.addEventListener("click", () => {
-                clearTimeout(timer);
-                closeSplash();
-            });
-        }
+        document.addEventListener("click", (e) => {
+            if (!stage.contains(e.target) && stage.classList.contains("active")) {
+                toggleStage(false);
+            }
+        });
     }
 
     /* 4. SIDEBAR MOBILE DRAWER + COMFORT TOGGLES */
@@ -375,7 +365,6 @@
             });
         });
 
-        // Font Size Toggle (A+)
         const fontBtn = document.getElementById("font-size-btn");
         try {
             if (localStorage.getItem("bn_large_text") === "1") {
@@ -395,7 +384,6 @@
             });
         }
 
-        // Light / Blue Comfort Mode Toggle
         const themeBtn = document.getElementById("theme-toggle-btn");
         function updateThemeIcon(isLight) {
             if (!themeBtn) return;
@@ -420,7 +408,6 @@
             });
         }
 
-        // Bharat Voice Toggle
         const voiceBtn = document.getElementById("voice-toggle-btn");
         if (voiceBtn) {
             voiceBtn.addEventListener("click", () => {
@@ -579,6 +566,7 @@
                               ? "कृपया PDF सेव्ह करण्यापूर्वी तुमचे पूर्ण नाव लिहा."
                               : "Please enter your full name first before saving your resume."
                     );
+                    return;
                 }
                 window.print();
             });
@@ -609,7 +597,6 @@
 
         if (!amtEl || !savMonthlyEl) return;
 
-        // EMI Calculation
         const P = Math.max(0, Number(amtEl.value) || 0);
         const annualRate = Math.max(0, Math.min(80, Number(rateEl.value) || 0));
         const n = Math.max(1, Math.min(240, Math.round(Number(monEl.value) || 12)));
@@ -632,7 +619,6 @@
         document.getElementById("out-interest").textContent = formatINR(totalInterest);
         document.getElementById("out-total-pay").textContent = formatINR(totalPay);
 
-        // Donut SVG Arc Update
         const arc = document.getElementById("emi-interest-arc");
         if (arc) {
             const circumference = 289;
@@ -640,7 +626,6 @@
             arc.style.strokeDashoffset = String(circumference * (1 - interestRatio));
         }
 
-        // Savings Compounding Calculation
         const monthlySav = Math.max(0, Number(savMonthlyEl.value) || 0);
         const savAnnual = Math.max(0, Math.min(35, Number(savRateEl.value) || 0));
         const years = Math.max(1, Math.min(10, Math.round(Number(savYearsEl.value) || 5)));
@@ -666,7 +651,6 @@
         document.getElementById("out-deposited").textContent = formatINR(totalDeposited);
         document.getElementById("out-final-sav").textContent = formatINR(finalSav);
 
-        // Render Bar Chart
         const barsContainer = document.getElementById("savings-bars");
         if (barsContainer && yearlyValues.length) {
             const maxVal = Math.max(...yearlyValues.map((d) => d.value), 1);
@@ -684,7 +668,6 @@
                 .join("");
         }
 
-        // Render Plain Insights
         const insightsEl = document.getElementById("money-insights-list");
         if (insightsEl) {
             const extraPct = P > 0 ? Math.round((totalInterest / P) * 100) : 0;
@@ -873,7 +856,7 @@
         renderSafetyResult();
     }
 
-    /* 8. EDUCATION & SKILL GUIDES WITH EXPANDABLE NOTES */
+    /* 8. EDUCATION & SKILL GUIDES */
     const educationData = [
         {
             id: "excel-office-skills",
@@ -1281,7 +1264,7 @@
             if (stored && uiText[stored]) savedLang = stored;
         } catch (err) {}
 
-        setupWelcomeSplash();
+        setupCrystalStage();
         setupNavigationAndComfort();
         setupResumeBuilder();
         setupMoneyDashboard();
