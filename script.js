@@ -1,6 +1,6 @@
 /* ==========================================
    BHARAT NEXUS - SMART CITIZEN HUB SCRIPT
-   Crystal 7 Centerpiece + Blue Sidebar +
+   Pure Black Minimalist Luxury Edition
    Option C + Option B + Option A + Voice
 ========================================== */
 
@@ -29,7 +29,6 @@
             menuLabel: "Menu",
             voiceOff: "Voice: OFF",
             voiceOn: "Voice: ON",
-            crystalHint: "Hover or tap 7",
             heroTagline: "KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST",
             heroTitle: 'SMART CITIZEN <span>HUB</span>',
             heroIntro:
@@ -124,7 +123,6 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज़: बंद",
             voiceOn: "आवाज़: चालू",
-            crystalHint: "7 को छूकर देखें",
             heroTagline: "ज्ञान • अवसर • प्रगति • विश्वास",
             heroTitle: 'स्मार्ट सिटीजन <span>हब</span>',
             heroIntro: "छात्रों, परिवारों और वरिष्ठ नागरिकों के लिए रोजमर्रा के टूल्स, वित्तीय स्पष्टता और व्यावहारिक ज्ञान।",
@@ -213,7 +211,6 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज: बंद",
             voiceOn: "आवाज: चालू",
-            crystalHint: "७ ला स्पर्श करा",
             heroTagline: "ज्ञान • संधी • प्रगती • विश्वास",
             heroTitle: 'स्मार्ट सिटीझन <span>हब</span>',
             heroIntro: "विद्यार्थी, कुटुंबे आणि ज्येष्ठ नागरिकांसाठी दैनंदिन टूल्स, आर्थिक स्पष्टता आणि व्यावहारिक ज्ञान.",
@@ -304,37 +301,7 @@
         } catch (err) {}
     }
 
-    /* 3. INTERACTIVE CRYSTAL '7' STAGE (MOBILE TAP + DESKTOP HOVER) */
-    function setupCrystalStage() {
-        const stage = document.getElementById("crystal-stage");
-        if (!stage) return;
-
-        function toggleStage(forceState) {
-            const isActive = typeof forceState === "boolean" ? forceState : !stage.classList.contains("active");
-            stage.classList.toggle("active", isActive);
-            stage.setAttribute("aria-pressed", String(isActive));
-        }
-
-        stage.addEventListener("click", (e) => {
-            e.stopPropagation();
-            toggleStage();
-        });
-
-        stage.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                toggleStage();
-            }
-        });
-
-        document.addEventListener("click", (e) => {
-            if (!stage.contains(e.target) && stage.classList.contains("active")) {
-                toggleStage(false);
-            }
-        });
-    }
-
-    /* 4. SIDEBAR MOBILE DRAWER + COMFORT TOGGLES */
+    /* 3. SIDEBAR MOBILE DRAWER + COMFORT TOGGLES */
     function setupNavigationAndComfort() {
         const sidebar = document.getElementById("sidebar");
         const overlay = document.getElementById("sidebar-overlay");
@@ -438,7 +405,7 @@
         voiceBtn.innerHTML = `${icon} <span>${label}</span>`;
     }
 
-    /* 5. OPTION C: RESUME BUILDER */
+    /* 4. OPTION C: RESUME BUILDER */
     const RESUME_STORAGE_KEY = "bharat_nexus_resume_draft_v1";
 
     function setupResumeBuilder() {
@@ -575,7 +542,7 @@
         updatePreview();
     }
 
-    /* 6. OPTION B: VISUAL EMI & SAVINGS DASHBOARD */
+    /* 5. OPTION B: VISUAL EMI & SAVINGS DASHBOARD */
     function formatINR(num) {
         return "₹" + Math.round(num).toLocaleString("en-IN");
     }
@@ -706,7 +673,7 @@
         updateMoneyDashboard();
     }
 
-    /* 7. OPTION A: ONLINE SAFETY GUIDE */
+    /* 6. OPTION A: ONLINE SAFETY GUIDE */
     const safetyScenarios = {
         qr: {
             en: {
@@ -856,7 +823,7 @@
         renderSafetyResult();
     }
 
-    /* 8. EDUCATION & SKILL GUIDES */
+    /* 7. EDUCATION & SKILL GUIDES */
     const educationData = [
         {
             id: "excel-office-skills",
@@ -1042,7 +1009,7 @@
             },
             hi: {
                 badge: "डिजिटल बेसिक्स (सभी उम्र)",
-                title: "माता-पिता और बुजुर्गों के लिए आसान स्मार्टफोन सेटिंग्स",
+                title: "माता-पिता और बुजुर्गों के लिए आसान स्मार्टफोन setिंग्स",
                 summary: "सरल फोन सेटिंग्स ताकि बड़े-बुजुर्ग बिना आंखों के तनाव के फोन चला सकें।",
                 tip: "जरूरी टिप: आराम से पढ़ने के लिए ऊपर दिए 'A+' या '☀' बटन को कभी भी दबाएं।",
                 steps: [
@@ -1173,7 +1140,7 @@
         });
     }
 
-    /* 9. LANGUAGE SWITCHING (SYNCED ACROSS ALL PAGES) */
+    /* 8. LANGUAGE SWITCHING (SYNCED ACROSS ALL PAGES) */
     function applyLanguage(lang) {
         if (!uiText[lang]) lang = "en";
         currentLang = lang;
@@ -1212,7 +1179,7 @@
         });
     }
 
-    /* 10. FLOATING BHARAT ASSISTANT */
+    /* 9. FLOATING BHARAT ASSISTANT */
     function setupAssistant() {
         const chatButton = document.createElement("button");
         chatButton.textContent = "✦";
@@ -1264,7 +1231,6 @@
             if (stored && uiText[stored]) savedLang = stored;
         } catch (err) {}
 
-        setupCrystalStage();
         setupNavigationAndComfort();
         setupResumeBuilder();
         setupMoneyDashboard();
