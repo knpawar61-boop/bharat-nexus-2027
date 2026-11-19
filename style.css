@@ -71,33 +71,32 @@ body.large-text textarea {
     background: #000000;
 }
 
-/* ROTATING BORDER FOR LIBRARY BUTTON */
+/* SLIM 1.5PX ROTATING COLOR BORDER LOCKED TO BUTTON SHAPE */
 .rotating-border-card {
     position: relative;
     display: inline-block;
-    padding: 1.5px;
     border-radius: 14px;
+    padding: 1.5px;
     overflow: hidden;
     text-decoration: none;
+    isolation: isolate;
 }
 
 .rotating-border-card::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250%;
-    height: 250%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    inset: -150%;
     background: conic-gradient(
-        #38bdf8,
-        #22c55e,
-        #facc15,
-        #f97316,
-        #a855f7,
-        #38bdf8
+        from 0deg at 50% 50%,
+        #38bdf8 0deg,
+        #22c55e 72deg,
+        #facc15 144deg,
+        #f97316 216deg,
+        #a855f7 288deg,
+        #38bdf8 360deg
     );
-    animation: spinGlowBorder 4.5s linear infinite;
+    animation: spinGlowBorder 5s linear infinite;
+    z-index: -1;
 }
 
 .rotating-inner {
@@ -110,11 +109,13 @@ body.large-text textarea {
     background: var(--bg-surface);
     color: var(--text-main);
     border-radius: 12.5px;
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes spinGlowBorder {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* APP SHELL & SIDEBAR */
@@ -1246,4 +1247,36 @@ footer h3 {
     #home,
     #money-dashboard,
     #safety-guide,
-    #ed
+    #education,
+    #team,
+    footer,
+    .resume-form,
+    .preview-label,
+    #resume-builder > h2,
+    #resume-builder > .section-subtitle,
+    .chat-button,
+    .chat-box {
+        display: none !important;
+    }
+
+    body,
+    .app-shell,
+    .main-workspace,
+    #resume-builder,
+    .resume-workspace,
+    .resume-preview-wrap {
+        display: block !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        width: 100% !important;
+    }
+
+    .resume-paper {
+        box-shadow: none !important;
+        padding: 0 !important;
+        min-height: auto !important;
+    }
+}
