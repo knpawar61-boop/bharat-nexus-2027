@@ -1,6 +1,5 @@
 /* ==========================================
-   BHARAT NEXUS - SMART CITIZEN HUB SCRIPT
-   Pure Black Minimalist Luxury Edition
+   BHARAT NEXUS - PURE BLACK EDITION SCRIPT
    Option C + Option B + Option A + Voice
 ========================================== */
 
@@ -29,13 +28,6 @@
             menuLabel: "Menu",
             voiceOff: "Voice: OFF",
             voiceOn: "Voice: ON",
-            heroTagline: "KNOWLEDGE • OPPORTUNITY • PROGRESS • TRUST",
-            heroTitle: 'SMART CITIZEN <span>HUB</span>',
-            heroIntro:
-                "Everyday tools, financial clarity, and practical knowledge crafted for students, families, and senior citizens.",
-            heroCta: "BUILD RESUME",
-            heroCtaMoney: "EMI & SAVINGS",
-            heroCtaLib: "OPEN LIBRARY",
             resHeading: "Resume & Biodata Maker",
             resSub: "Fill in your details below to preview a clean A4 resume live and export it as a PDF.",
             btnSample: "Fill Sample Example",
@@ -123,12 +115,6 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज़: बंद",
             voiceOn: "आवाज़: चालू",
-            heroTagline: "ज्ञान • अवसर • प्रगति • विश्वास",
-            heroTitle: 'स्मार्ट सिटीजन <span>हब</span>',
-            heroIntro: "छात्रों, परिवारों और वरिष्ठ नागरिकों के लिए रोजमर्रा के टूल्स, वित्तीय स्पष्टता और व्यावहारिक ज्ञान।",
-            heroCta: "रिज्यूमे बनाएं",
-            heroCtaMoney: "EMI और बचत देखें",
-            heroCtaLib: "लाइब्रेरी खोलें",
             resHeading: "रिज्यूमे और बायोडाटा मेकर",
             resSub: "नीचे अपनी जानकारी भरें और सामने अपना साफ A4 रिज्यूमे PDF के रूप में तैयार करें।",
             btnSample: "उदाहरण भरें (Sample)",
@@ -211,12 +197,6 @@
             menuLabel: "मेनू",
             voiceOff: "आवाज: बंद",
             voiceOn: "आवाज: चालू",
-            heroTagline: "ज्ञान • संधी • प्रगती • विश्वास",
-            heroTitle: 'स्मार्ट सिटीझन <span>हब</span>',
-            heroIntro: "विद्यार्थी, कुटुंबे आणि ज्येष्ठ नागरिकांसाठी दैनंदिन टूल्स, आर्थिक स्पष्टता आणि व्यावहारिक ज्ञान.",
-            heroCta: "रिझ्युमे बनवा",
-            heroCtaMoney: "EMI आणि बचत पहा",
-            heroCtaLib: "लायब्ररी उघडा",
             resHeading: "रिझ्युमे आणि बायोडाटा मेकर",
             resSub: "खाली तुमची माहिती भरा, बाजूला स्वच्छ A4 रिझ्युमे पहा आणि PDF म्हणून सेव्ह करा.",
             btnSample: "नमुना भरा (Sample)",
@@ -1009,7 +989,7 @@
             },
             hi: {
                 badge: "डिजिटल बेसिक्स (सभी उम्र)",
-                title: "माता-पिता और बुजुर्गों के लिए आसान स्मार्टफोन setिंग्स",
+                title: "माता-पिता और बुजुर्गों के लिए आसान स्मार्टफोन सेटिंग्स",
                 summary: "सरल फोन सेटिंग्स ताकि बड़े-बुजुर्ग बिना आंखों के तनाव के फोन चला सकें।",
                 tip: "जरूरी टिप: आराम से पढ़ने के लिए ऊपर दिए 'A+' या '☀' बटन को कभी भी दबाएं।",
                 steps: [
