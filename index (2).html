@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Nexus</title>
+    <meta name="description" content="Bharat Nexus — Smart Citizen Hub">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='32' font-weight='bold'%3EBN%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5">
+    <style id="gx-css">
+/* =================================================
+   GX HOME: realistic galaxy + 3D emblem
+================================================= */
+.gx-home {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #000000;
+    min-height: calc(100vh - 60px);
+}
+
+#gx-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    animation: gxFade 2.2s ease both;
+}
+
+.gx-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.88) 24%, rgba(0, 0, 0, 0.35) 46%, rgba(0, 0, 0, 0) 62%),
+        radial-gradient(ellipse at 66% 50%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* ---------- copy ---------- */
+.gx-copy {
+    position: relative;
+    z-index: 4;
+    width: min(580px, 46%);
+    margin-left: 7%;
+    padding: 64px 0 96px;
+}
+
+.gx-brand {
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    color: #d4af37;
+    animation: gxUp 0.9s 0.1s both;
+}
+
+.gx-title {
+    margin-top: 22px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: clamp(38px, 4.9vw, 72px);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    color: #f6efd9;
+    animation: gxUp 1s 0.25s both;
+}
+
+html[lang="hi"] .gx-title, html[lang="mr"] .gx-title { font-size: clamp(32px, 3.9vw, 56px); line-height: 1.18; letter-spacing: 0; }
+
+.gx-lead {
+    margin-top: 26px;
+    max-width: 480px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #9b9684;
+    animation: gxUp 1s 0.45s both;
+}
+
+.gx-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 38px;
+    animation: gxUp 1s 0.65s both;
+}
+
+.gx-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.gx-btn:hover { transform: translateY(-2px); }
+.gx-btn-gold { background: linear-gradient(135deg, #f5d76e, #d4af37); color: #000000; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.22); }
+.gx-btn-ghost { border: 1px solid rgba(212, 175, 55, 0.45); color: #f5d76e; background: rgba(0, 0, 0, 0.35); }
+.gx-btn-ghost:hover { border-color: #f5d76e; }
+.gx-btn:focus-visible { outline: 2px solid #f5d76e; outline-offset: 4px; }
+
+.gx-stats {
+    list-style: none;
+    display: flex;
+    gap: 44px;
+    margin-top: 56px;
+    animation: gxUp 1s 0.85s both;
+}
+.gx-stats strong { display: block; font-size: 24px; font-weight: 700; color: #f6efd9; }
+.gx-stats span { display: block; margin-top: 3px; font-size: 13px; color: #7d7968; }
+
+/* ---------- emblem ---------- */
+.gx-center { position: absolute; left: 66%; top: 50%; width: 0; height: 0; z-index: 3; }
+
+.gx-emblem {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: clamp(150px, 15vw, 210px);
+    aspect-ratio: 1;
+    margin: calc(clamp(150px, 15vw, 210px) / -2) 0 0 calc(clamp(150px, 15vw, 210px) / -2);
+    perspective: 900px;
+    filter: drop-shadow(0 0 38px rgba(212, 175, 55, 0.4));
+    animation: gxPop 1.4s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.gx-obj { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; will-change: transform; }
+
+.gx-slab, .gx-hole, .gx-text, .gx-shine { position: absolute; inset: 0; border-radius: 50%; }
+
+.gx-slab {
+    background: conic-gradient(from 200deg, #fff1b8, #d4af37 18%, #7a5a0c 36%, #f5d76e 52%, #a67c14 70%, #fff1b8 86%, #d4af37);
+    -webkit-mask: radial-gradient(circle, transparent 55%, #000 56%);
+    mask: radial-gradient(circle, transparent 55%, #000 56%);
+}
+
+.gx-hole {
+    inset: 18%;
+    background: radial-gradient(circle at 35% 30%, #1d1608, #000000 70%);
+    box-shadow: inset 0 0 0 2px rgba(212, 175, 55, 0.6);
+    display: grid;
+    place-items: center;
+}
+.gx-hole span {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(30px, 3.4vw, 46px);
+    background: linear-gradient(135deg, #fff1b8, #d4af37 55%, #9a7412);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gx-text { inset: 0; }
+.gx-text svg { width: 100%; height: 100%; display: block; animation: gxSpin 60s linear infinite; }
+
+.gx-shine {
+    -webkit-mask: radial-gradient(circle, transparent 55%, #000 56%);
+    mask: radial-gradient(circle, transparent 55%, #000 56%);
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 62%);
+    background-size: 300% 100%;
+    animation: gxShine 6s 1.5s ease-in-out infinite;
+}
+
+/* ---------- orbit nodes ---------- */
+.gx-node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f6efd9;
+    text-decoration: none;
+    white-space: nowrap;
+    will-change: transform;
+    animation: gxFade 1s backwards;
+    animation-delay: calc(1.3s + var(--i) * 0.15s);
+}
+.gx-node i {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid #f5d76e;
+    background: #000000;
+    box-shadow: 0 0 14px rgba(245, 215, 110, 0.55);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.gx-node b {
+    font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    text-shadow: 0 0 14px #000, 0 0 4px #000;
+    transition: color 0.2s ease;
+}
+.gx-node:hover i, .gx-node:focus-visible i { background: #f5d76e; transform: scale(1.4); }
+.gx-node:hover b, .gx-node:focus-visible b { color: #f5d76e; }
+.gx-node:focus-visible { outline: 2px solid #f5d76e; outline-offset: 6px; border-radius: 8px; }
+
+.gx-tip {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 8px);
+    transform: translate(-50%, 4px);
+    padding: 6px 12px;
+    font-style: normal;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    color: #f6efd9;
+    background: rgba(6, 6, 6, 0.92);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.gx-node:hover .gx-tip, .gx-node:focus-visible .gx-tip { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- scroll cue ---------- */
+.gx-scroll { position: absolute; z-index: 5; left: 7%; bottom: 18px; width: 24px; height: 54px; animation: gxFade 1s 2s both; }
+.gx-scroll::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, rgba(212, 175, 55, 0.55), transparent); }
+.gx-scroll i { position: absolute; left: 50%; top: 0; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #f5d76e; box-shadow: 0 0 10px rgba(245, 215, 110, 0.8); animation: gxDrop 2.6s ease-in-out infinite; }
+
+.gx-home.gx-leave .gx-copy, .gx-home.gx-leave .gx-node, .gx-home.gx-leave .gx-emblem { opacity: 0; transition: opacity 0.4s ease 0.1s; }
+
+@keyframes gxFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gxUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes gxPop { from { opacity: 0; transform: scale(0.82); } to { opacity: 1; transform: none; } }
+@keyframes gxSpin { to { transform: rotate(360deg); } }
+@keyframes gxShine { 0% { background-position: 130% 0; } 40%, 100% { background-position: -130% 0; } }
+@keyframes gxDrop { 0% { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 46px; opacity: 0; } }
+
+/* ---------- tablet / phone ---------- */
+@media (max-width: 1000px) {
+    .gx-copy { width: min(520px, 52%); margin-left: 5%; }
+    .gx-stats { gap: 28px; }
+}
+
+@media (max-width: 760px) {
+    .gx-home { display: block; min-height: 0; padding-bottom: 80px; }
+    .gx-center { left: 50%; top: 235px; }
+    .gx-emblem { width: 128px; margin: -64px 0 0 -64px; }
+    .gx-fade { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 38%, #000000 62%); }
+    .gx-copy { width: auto; margin: 0; padding: 440px 6% 0; text-align: left; }
+    .gx-title { font-size: clamp(34px, 9.5vw, 46px); }
+    html[lang="hi"] .gx-title, html[lang="mr"] .gx-title { font-size: clamp(28px, 7.6vw, 38px); }
+    .gx-lead { font-size: 16px; }
+    .gx-stats { gap: 22px; margin-top: 40px; }
+    .gx-node b { font-size: 18px; }
+    .gx-node i { width: 10px; height: 10px; }
+    .gx-tip { display: none; }
+    .gx-scroll { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gx-home *, #gx-canvas { animation: none !important; }
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar-overlay" class="sidebar-overlay" hidden></div>
+
+    <div class="app-shell">
+
+        <!-- LEFT DASHBOARD SIDEBAR -->
+        <aside id="sidebar" class="sidebar" aria-label="Workspace Navigation">
+            <div class="sidebar-brand">
+                <h2 class="logo">BHARAT <span>NEXUS</span></h2>
+                <p class="sidebar-tagline">ज्ञान • संधी • प्रगती • विश्वास</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#home" class="side-link active">
+                    <span class="side-icon" aria-hidden="true">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="#resume-builder" class="side-link">
+                    <span class="side-icon" aria-hidden="true">📄</span>
+                    <span data-i18n="navResume">Resume Maker</span>
+                </a>
+                <a href="#money-dashboard" class="side-link">
+                    <span class="side-icon" aria-hidden="true">📊</span>
+                    <span data-i18n="navMoney">EMI &amp; Savings</span>
+                </a>
+                <a href="#safety-guide" class="side-link">
+                    <span class="side-icon" aria-hidden="true">🛡️</span>
+                    <span data-i18n="navSafety">Online Safety</span>
+                </a>
+                <a href="#education" class="side-link">
+                    <span class="side-icon" aria-hidden="true">🎓</span>
+                    <span data-i18n="navEducation">Education &amp; Notes</span>
+                </a>
+                <a href="#team" class="side-link">
+                    <span class="side-icon" aria-hidden="true">👥</span>
+                    <span data-i18n="navTeam">Our Team</span>
+                </a>
+
+                <a href="library.html" class="side-library-btn rotating-border-card">
+                    <span class="rotating-inner">
+                        <span class="side-icon" aria-hidden="true">📚</span>
+                        <span data-i18n="navLibrary">Knowledge Library →</span>
+                    </span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="terms.html" class="side-sub-link" data-i18n="navTerms">⚖️ Terms &amp; Privacy</a>
+                <p class="side-year">© 2027 Bharat Nexus</p>
+            </div>
+        </aside>
+
+        <!-- RIGHT MAIN WORKSPACE -->
+        <div class="main-workspace">
+
+            <header class="topbar">
+                <button type="button" id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Open Menu" aria-expanded="false">
+                    ☰ <span data-i18n="menuLabel">Menu</span>
+                </button>
+
+                <div class="topbar-controls">
+                    <button type="button" id="voice-toggle-btn" class="utility-btn" aria-pressed="false" title="Bharat Voice Guide">
+                        🔇 <span data-i18n="voiceOff">Voice: OFF</span>
+                    </button>
+                    <button type="button" id="font-size-btn" class="utility-btn" aria-pressed="false" title="Larger Reading Text">
+                        A+
+                    </button>
+                    <button type="button" id="theme-toggle-btn" class="utility-btn" aria-pressed="false" title="Switch Light or Dark Mode">
+                        ☀
+                    </button>
+
+                    <div class="lang-switcher" role="group" aria-label="Choose Language">
+                        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+                        <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+                        <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- GX HOME: realistic galaxy + 3D emblem -->
+            <main id="home" class="blank-home gx-home">
+                <canvas id="gx-canvas" aria-hidden="true"></canvas>
+                <div class="gx-fade" aria-hidden="true"></div>
+
+                <div class="gx-center" id="gx-center" aria-hidden="true">
+                    <div class="gx-emblem"><div class="gx-obj" id="gx-obj"></div></div>
+                </div>
+
+                <a class="gx-node" style="--i:0" href="library.html"><i></i><b lang="mr">ज्ञान</b><em class="gx-tip" data-gx="tip0">Knowledge Library</em></a>
+                <a class="gx-node" style="--i:1" href="#resume-builder"><i></i><b lang="mr">संधी</b><em class="gx-tip" data-gx="tip1">Resume Maker</em></a>
+                <a class="gx-node" style="--i:2" href="#money-dashboard"><i></i><b lang="mr">प्रगती</b><em class="gx-tip" data-gx="tip2">EMI &amp; Savings</em></a>
+                <a class="gx-node" style="--i:3" href="#safety-guide"><i></i><b lang="mr">विश्वास</b><em class="gx-tip" data-gx="tip3">Online Safety</em></a>
+
+                <div class="gx-copy">
+                    <p class="gx-brand">BHARAT NEXUS</p>
+                    <h1 class="gx-title" data-gx="title">Learn, grow and<br>stay safe online.</h1>
+                    <p class="gx-lead" data-gx="lead">Simple guides and tools in English, हिंदी and मराठी. Build a resume, plan loans and savings, and spot online scams.</p>
+                    <div class="gx-cta">
+                        <a class="gx-btn gx-btn-gold" href="#resume-builder" data-gx="btn1">Explore tools</a>
+                        <a class="gx-btn gx-btn-ghost" href="library.html" data-gx="btn2">Knowledge Library</a>
+                    </div>
+                    <ul class="gx-stats">
+                        <li><strong>3</strong><span data-gx="st1">Languages</span></li>
+                        <li><strong>4</strong><span data-gx="st2">Knowledge shelves</span></li>
+                        <li><strong>4</strong><span data-gx="st3">Smart tools</span></li>
+                    </ul>
+                </div>
+
+                <a class="gx-scroll" href="#resume-builder" aria-label="Scroll to the tools"><i></i></a>
+            </main>
+
+            <!-- OPTION C: RESUME & BIODATA MAKER -->
+            <section id="resume-builder">
+                <h2 data-i18n="resHeading">Resume &amp; Biodata Maker</h2>
+                <p class="section-subtitle" data-i18n="resSub">
+                    Fill in your details below to preview a clean A4 resume live and export it as a PDF.
+                </p>
+
+                <div class="resume-workspace">
+                    <form id="resume-form" class="resume-form" autocomplete="off">
+                        <div class="form-actions-top">
+                            <button type="button" id="fill-sample-btn" class="secondary-btn" data-i18n="btnSample">
+                                Fill Sample Example
+                            </button>
+                            <button type="button" id="clear-resume-btn" class="secondary-btn danger-outline" data-i18n="btnClear">
+                                Clear Form
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-name" data-i18n="lblName">Full Name</label>
+                            <input id="res-name" type="text" placeholder="e.g., Aarav Sharma">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-role" data-i18n="lblRole">Target Role / Title</label>
+                            <input id="res-role" type="text" placeholder="e.g., Office Assistant / B.Sc. Fresher">
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="res-phone" data-i18n="lblPhone">Phone Number</label>
+                                <input id="res-phone" type="tel" placeholder="e.g., +91 98XXXXXXXX">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="res-email" data-i18n="lblEmail">Email Address</label>
+                                <input id="res-email" type="email" placeholder="e.g., aarav@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-city" data-i18n="lblCity">City &amp; State</label>
+                            <input id="res-city" type="text" placeholder="e.g., Nashik, Maharashtra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-summary" data-i18n="lblSummary">Short About Me / Career Goal</label>
+                            <textarea id="res-summary" rows="3"
+                                placeholder="2–3 clear lines about your strengths and goal."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-education" data-i18n="lblEducation">Education (College / School / Year)</label>
+                            <textarea id="res-education" rows="3"
+                                placeholder="e.g., B.Com — Pune University (2026)&#10;12th HSC — State Board (2023)"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-skills" data-i18n="lblSkills">Skills (Separate with commas)</label>
+                            <input id="res-skills" type="text" placeholder="e.g., MS Excel, Tally, HTML & CSS, Communication">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="res-experience" data-i18n="lblExperience">Projects / Internship / Experience</label>
+                            <textarea id="res-experience" rows="3"
+                                placeholder="e.g., College Event Coordinator&#10;Built personal portfolio project"></textarea>
+                        </div>
+
+                        <button type="button" id="print-resume-btn" class="print-btn" data-i18n="btnPrint">
+                            Download / Print Clean PDF
+                        </button>
+                    </form>
+
+                    <div class="resume-preview-wrap">
+                        <div class="preview-label" data-i18n="previewLabel">Live Paper Preview (A4 Ready)</div>
+                        <article id="resume-preview" class="resume-paper" aria-label="Live Resume Preview">
+                            <div class="paper-header">
+                                <h3 id="prev-name">Your Full Name</h3>
+                                <p id="prev-role" class="paper-role">Target Job Role / Student Title</p>
+                                <p id="prev-contact" class="paper-contact">Phone • Email • City, State</p>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>ABOUT ME</h4>
+                                <p id="prev-summary">Write 2–3 clear lines about yourself and your career goal.</p>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>EDUCATION</h4>
+                                <div id="prev-education" class="paper-multiline">Add your college, degree, school, and year.</div>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>KEY SKILLS</h4>
+                                <ul id="prev-skills" class="paper-skills">
+                                    <li>Communication</li>
+                                    <li>MS Office</li>
+                                    <li>Problem Solving</li>
+                                </ul>
+                            </div>
+
+                            <div class="paper-section">
+                                <h4>PROJECTS &amp; EXPERIENCE</h4>
+                                <div id="prev-experience" class="paper-multiline">Add college projects, internships, or volunteer experience.</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPTION B: VISUAL EMI & SAVINGS DASHBOARD -->
+            <section id="money-dashboard">
+                <h2 data-i18n="moneyHeading">Visual EMI &amp; Savings Dashboard</h2>
+                <p class="section-subtitle" data-i18n="moneySub">
+                    See real loan interest vs. monthly savings growth visually before making money decisions.
+                </p>
+
+                <div class="bento-dashboard">
+                    <div class="bento-card">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="emiTitle">EMI Reality Check</h3>
+                            <span class="bento-tag" data-i18n="emiTag">Loan &amp; Purchase</span>
+                        </div>
+
+                        <div class="calc-inputs">
+                            <div class="calc-field">
+                                <label for="emi-amount" data-i18n="lblLoanAmt">Item / Loan Amount (₹)</label>
+                                <input id="emi-amount" type="number" min="1000" max="10000000" step="1000" value="50000">
+                            </div>
+                            <div class="calc-row-2">
+                                <div class="calc-field">
+                                    <label for="emi-rate" data-i18n="lblRate">Interest (% / Year)</label>
+                                    <input id="emi-rate" type="number" min="0" max="60" step="0.5" value="14">
+                                </div>
+                                <div class="calc-field">
+                                    <label for="emi-months" data-i18n="lblMonths">Months</label>
+                                    <input id="emi-months" type="number" min="3" max="120" step="1" value="12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="donut-area">
+                            <svg class="donut-svg" viewBox="0 0 120 120" aria-label="Principal vs Interest Chart">
+                                <circle class="donut-track" cx="60" cy="60" r="46"></circle>
+                                <circle id="emi-interest-arc" class="donut-interest" cx="60" cy="60" r="46"></circle>
+                            </svg>
+                            <div class="donut-stats">
+                                <p class="stat-big"><span data-i18n="lblMonthlyEmi">Monthly EMI:</span> <strong id="out-emi">₹4,489</strong></p>
+                                <p><span class="dot dot-principal"></span> <span data-i18n="lblPrincipal">Original Amount:</span> <strong id="out-principal">₹50,000</strong></p>
+                                <p><span class="dot dot-interest"></span> <span data-i18n="lblExtraInt">Extra Interest:</span> <strong id="out-interest">₹3,872</strong></p>
+                                <p><span data-i18n="lblTotalPay">Total You Pay:</span> <strong id="out-total-pay">₹53,872</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="savTitle">Monthly Savings Growth</h3>
+                            <span class="bento-tag tag-green" data-i18n="savTag">Compounding</span>
+                        </div>
+
+                        <div class="calc-inputs">
+                            <div class="calc-field">
+                                <label for="sav-monthly" data-i18n="lblSavMonthly">Monthly Saving (₹)</label>
+                                <input id="sav-monthly" type="number" min="100" max="500000" step="100" value="1500">
+                            </div>
+                            <div class="calc-row-2">
+                                <div class="calc-field">
+                                    <label for="sav-rate" data-i18n="lblSavRate">Return (% / Year)</label>
+                                    <input id="sav-rate" type="number" min="1" max="25" step="0.5" value="10">
+                                </div>
+                                <div class="calc-field">
+                                    <label for="sav-years" data-i18n="lblSavYears">Years (1–10)</label>
+                                    <input id="sav-years" type="number" min="1" max="10" step="1" value="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="savings-bars" class="bar-chart" aria-label="Yearly Savings Growth Bars">
+                        </div>
+
+                        <div class="savings-summary-row">
+                            <span><span data-i18n="lblDeposited">You Put In:</span> <strong id="out-deposited">₹90,000</strong></span>
+                            <span><span data-i18n="lblFinalValue">Final Value:</span> <strong id="out-final-sav">₹1,16,156</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-insights">
+                        <div class="bento-card-head">
+                            <h3 data-i18n="insightsTitle">Top Financial Insights</h3>
+                            <span class="bento-tag" data-i18n="insightsTag">Plain Summary</span>
+                        </div>
+                        <ul id="money-insights-list" class="insights-list">
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPTION A: CALM ONLINE SAFETY GUIDE -->
+            <section id="safety-guide">
+                <h2 data-i18n="safetyHeading">Online Safety Guide</h2>
+                <p class="section-subtitle" data-i18n="safetySub">
+                    Tap any common real-life situation below to see the safe action immediately.
+                </p>
+
+                <div class="safety-scenarios" role="group" aria-label="Common Online Scenarios">
+                    <button type="button" class="scenario-btn active" data-scenario="qr" data-i18n="scenQr">
+                        📱 QR Code Sent to "Receive" Money
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="jobfee" data-i18n="scenJob">
+                        💼 Job / Internship Asks Registration Fee
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="kyc" data-i18n="scenKyc">
+                        🏦 SMS Link Says "Bank / SIM Blocked Today"
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="call" data-i18n="scenCall">
+                        📞 Threatening Video Call ("Parcel / Police")
+                    </button>
+                </div>
+
+                <div id="safety-result-box" class="safety-result-box" aria-live="polite">
+                </div>
+            </section>
+
+            <!-- EDUCATIONAL & SKILL LEARNING SECTION -->
+            <section id="education">
+                <h2 data-i18n="eduHeading">Education &amp; Practical Skill Guides</h2>
+
+                <p class="section-subtitle" data-i18n="eduSub">
+                    Learn practical skills, read built-in study notes, and grow at your own pace.
+                </p>
+
+                <div class="search-box-wrap">
+                    <label for="education-search" class="sr-only">Search courses, skills, study guides</label>
+                    <input
+                        id="education-search"
+                        type="search"
+                        placeholder="Search coding, Excel, English, interview prep, digital basics..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="filter-pills" role="group" aria-label="Filter education topics">
+                    <button type="button" class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
+                    <button type="button" class="filter-btn" data-filter="courses" data-i18n="filterCourses">Free Learning</button>
+                    <button type="button" class="filter-btn" data-filter="career" data-i18n="filterCareer">Career &amp; Skills</button>
+                    <button type="button" class="filter-btn" data-filter="digital" data-i18n="filterDigital">Digital Basics (All Ages)</button>
+                </div>
+
+                <p id="education-results-count" class="results-count" aria-live="polite"></p>
+
+                <div id="education-list" class="opportunity-grid">
+                </div>
+            </section>
+
+            <!-- MEET OUR TEAM SECTION -->
+            <section id="team">
+                <h2 data-i18n="teamHeading">Meet Our Team</h2>
+                <p class="section-subtitle" data-i18n="teamSub">
+                    The dedicated team building Bharat Nexus for a smarter 2027.
+                </p>
+
+                <div class="founder-card">
+                    <div class="team-avatar founder-avatar" aria-hidden="true">KP</div>
+                    <span class="team-badge" data-i18n="founderBadge">FOUNDER &amp; LEAD CREATOR</span>
+                    <h3 class="founder-name">KRISHNA PAWAR</h3>
+                    <p class="team-bio" data-i18n="founderBio">
+                        Leading the 2027 Bharat Nexus vision—building calm, practical digital tools and education for every generation in India.
+                    </p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">AM</div>
+                        <span class="team-role" data-i18n="member1Role">Guide &amp; Mentor</span>
+                        <h4 class="member-name">Akshada Mahale</h4>
+                        <p class="team-bio" data-i18n="member1Bio">
+                            Guides quality, clarity, and user experience so every page stays calm, simple, and helpful for all ages.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">AS</div>
+                        <span class="team-role" data-i18n="member2Role">Project Researcher</span>
+                        <h4 class="member-name">Aadesh Salve</h4>
+                        <p class="team-bio" data-i18n="member2Bio">
+                            Researches practical student needs, educational notes, and real-world challenges to solve next.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">VA</div>
+                        <span class="team-role" data-i18n="member3Role">Project Researcher</span>
+                        <h4 class="member-name">Vishal Aadke</h4>
+                        <p class="team-bio" data-i18n="member3Bio">
+                            Finds accurate skill resources, verifies content quality, and helps shape useful everyday guides.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar" aria-hidden="true">RJ</div>
+                        <span class="team-role" data-i18n="member4Role">Community &amp; Outreach Lead</span>
+                        <h4 class="member-name">Ritesh Jaware</h4>
+                        <p class="team-bio" data-i18n="member4Bio">
+                            Connects with youth, students, and local communities to share Bharat Nexus and gather honest feedback.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <h3>BHARAT NEXUS</h3>
+                <p>ज्ञान • संधी • प्रगती • विश्वास</p>
+                <p class="footer-links">
+                    <a href="library.html" data-i18n="navLibraryLink">Knowledge Library</a> •
+                    <a href="terms.html" data-i18n="navTermsLink">Terms &amp; Privacy</a>
+                </p>
+                <p class="copyright">© 2027 Bharat Nexus. Public Utility &amp; Learning Platform.</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="script.js?v=5"></script>
+    <script id="gx-js">
+(function () {
+    "use strict";
+    var doc = document;
+    var home = doc.getElementById("home");
+    var cv = doc.getElementById("gx-canvas");
+    if (!home || !cv || !cv.getContext) return;
+
+    /* ---- tiny translations (works even if script.js is old) ---- */
+    var GX = {
+        en: {
+            title: "Learn, grow and<br>stay safe online.",
+            lead: "Simple guides and tools in English, हिंदी and मराठी. Build a resume, plan loans and savings, and spot online scams.",
+            btn1: "Explore tools", btn2: "Knowledge Library",
+            st1: "Languages", st2: "Knowledge shelves", st3: "Smart tools",
+            tip0: "Knowledge Library", tip1: "Resume Maker", tip2: "EMI &amp; Savings", tip3: "Online Safety"
+        },
+        hi: {
+            title: "सीखें, आगे बढ़ें और<br>ऑनलाइन सुरक्षित रहें।",
+            lead: "अंग्रेज़ी, हिंदी और मराठी में आसान गाइड और टूल्स। रिज़्यूमे बनाएँ, लोन और बचत की योजना बनाएँ, और ऑनलाइन ठगी पहचानें।",
+            btn1: "टूल्स देखें", btn2: "ज्ञान लाइब्रेरी",
+            st1: "भाषाएँ", st2: "ज्ञान शेल्फ़", st3: "स्मार्ट टूल्स",
+            tip0: "ज्ञान लाइब्रेरी", tip1: "रिज़्यूमे मेकर", tip2: "EMI और बचत", tip3: "ऑनलाइन सुरक्षा"
+        },
+        mr: {
+            title: "शिका, पुढे जा आणि<br>ऑनलाइन सुरक्षित राहा.",
+            lead: "इंग्रजी, हिंदी आणि मराठीत सोपी मार्गदर्शिका आणि साधने. रेझ्युमे बनवा, कर्ज आणि बचतीचे नियोजन करा, आणि ऑनलाइन फसवणूक ओळखा.",
+            btn1: "साधने पाहा", btn2: "ज्ञान ग्रंथालय",
+            st1: "भाषा", st2: "ज्ञान कप्पे", st3: "स्मार्ट साधने",
+            tip0: "ज्ञान ग्रंथालय", tip1: "रेझ्युमे मेकर", tip2: "EMI आणि बचत", tip3: "ऑनलाइन सुरक्षा"
+        }
+    };
+    function curLang() {
+        var l = doc.documentElement.lang;
+        if (GX[l]) return l;
+        try { l = localStorage.getItem("bn_lang"); } catch (e) {}
+        return GX[l] ? l : "en";
+    }
+    function setLang(l) {
+        var d = GX[l] || GX.en;
+        [].forEach.call(home.querySelectorAll("[data-gx]"), function (el) {
+            var v = d[el.getAttribute("data-gx")];
+            if (v) el.innerHTML = v;
+        });
+    }
+    setLang(curLang());
+    if (window.MutationObserver) {
+        new MutationObserver(function () { setLang(curLang()); })
+            .observe(doc.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    }
+
+    /* ---- 3D emblem (stacked gold slabs = real thickness) ---- */
+    var obj = doc.getElementById("gx-obj");
+    var i;
+    for (i = -4; i <= 4; i++) {
+        var slab = doc.createElement("div");
+        slab.className = "gx-slab";
+        slab.style.transform = "translateZ(" + (i * 3) + "px)";
+        slab.style.filter = "brightness(" + (0.5 + (i + 4) * 0.065).toFixed(3) + ")";
+        obj.appendChild(slab);
+    }
+    var hole = doc.createElement("div");
+    hole.className = "gx-hole";
+    hole.style.transform = "translateZ(-4px)";
+    hole.innerHTML = "<span>BN</span>";
+    obj.appendChild(hole);
+    var txt = doc.createElement("div");
+    txt.className = "gx-text";
+    txt.style.transform = "translateZ(14px)";
+    txt.innerHTML =
+        '<svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="gxArc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>' +
+        '<text fill="#2a1d05" fill-opacity="0.85" font-size="11" font-weight="700" font-family="Cinzel, Georgia, serif">' +
+        '<textPath href="#gxArc" textLength="496" lengthAdjust="spacing">BHARAT NEXUS • SMART CITIZEN HUB • BHARAT NEXUS • SMART CITIZEN HUB •</textPath></text></svg>';
+    obj.appendChild(txt);
+    var shine = doc.createElement("div");
+    shine.className = "gx-shine";
+    shine.style.transform = "translateZ(15px)";
+    obj.appendChild(shine);
+
+    /* ---- galaxy ---- */
+    var ctx = cv.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    var mq = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+    var reduce = mq("(prefers-reduced-motion: reduce)");
+    var fine = mq("(hover: hover) and (pointer: fine)");
+    var center = doc.getElementById("gx-center");
+    var nodes = [].slice.call(home.querySelectorAll(".gx-node"));
+    var W = 0, H = 0, cx = 0, cy = 0, R = 400, mobile = false, orbRx = 260, copyR = 0;
+    var stars = [], buckets = [], XS, YS, neb = [], dust = [], bgs = [], builtFor = null;
+    var tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+    var orbitA = 0, paused = false, last = performance.now();
+    var meteor = null, nextMeteor = last + 6000;
+
+    var COLORS = [[255, 204, 115], [255, 222, 160], [255, 236, 205], [255, 246, 232], [196, 212, 255], [160, 184, 255]];
+    var ALPHAS = [0.45, 0.78, 1];
+
+    function sprite(rgb) {
+        var c = doc.createElement("canvas"); c.width = c.height = 128;
+        var g = c.getContext("2d");
+        var gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+        gr.addColorStop(0, "rgba(" + rgb + ",1)");
+        gr.addColorStop(0.35, "rgba(" + rgb + ",0.35)");
+        gr.addColorStop(1, "rgba(" + rgb + ",0)");
+        g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+        return c;
+    }
+    var SP_GOLD = sprite("255,214,140"), SP_BLUE = sprite("150,180,255"), SP_CORE = sprite("255,226,170"), SP_DARK = sprite("0,0,0");
+
+    function gauss() { return (Math.random() + Math.random() + Math.random() + Math.random() - 2) / 0.577; }
+
+    var TW = 1.7;
+    function build() {
+        var N = mobile ? 5500 : 12000, b, k;
+        stars = []; buckets = [];
+        for (b = 0; b < 36; b++) buckets.push([]);
+        XS = new Float32Array(N); YS = new Float32Array(N);
+        for (k = 0; k < N; k++) {
+            var bulge = Math.random() < 0.2, r, th, z, arm = -1, ci;
+            if (bulge) {
+                r = Math.abs(gauss()) * 0.11; th = Math.random() * 6.283; z = gauss() * 0.06 * Math.max(0.2, 1 - r * 3);
+                ci = Math.random() < 0.55 ? 0 : 1;
+            } else {
+                r = 0.06 + Math.pow(Math.random(), 0.8) * 0.94;
+                arm = Math.random() < 0.9 ? k % 2 : -1;
+                th = arm >= 0 ? arm * Math.PI + TW * Math.log(1 + r / 0.14) + gauss() * (0.13 + 0.14 * r) : Math.random() * 6.283;
+                z = gauss() * 0.018 * (1.2 - r);
+                if (arm >= 0 && Math.random() < 0.3 + 0.35 * r) ci = Math.random() < 0.5 ? 4 : 5;
+                else ci = r < 0.3 ? 1 : r < 0.6 ? 2 : 3;
+            }
+            var ai = Math.random() < 0.6 ? 0 : Math.random() < 0.7 ? 1 : 2;
+            var si = (ai === 2 && Math.random() < 0.3) ? 1 : 0;
+            var key = (ci * 3 + ai) * 2 + si;
+            stars.push({ r: r, th: th, z: z, w: 0.05 / Math.sqrt(0.2 + r) });
+            buckets[key].push(k);
+        }
+        neb = [];
+        for (k = 0; k < 80; k++) {
+            var nr = 0.22 + Math.random() * 0.75, na = k % 2;
+            neb.push({ r: nr, th: na * Math.PI + TW * Math.log(1 + nr / 0.14) + gauss() * 0.25, w: 0.05 / Math.sqrt(0.2 + nr), s: 0.07 + Math.random() * 0.15, blue: Math.random() < 0.45 });
+        }
+        dust = [];
+        for (k = 0; k < 70; k++) {
+            var dr = 0.14 + Math.random() * 0.68;
+            dust.push({ r: dr, th: (k % 2) * Math.PI + TW * Math.log(1 + dr / 0.14) + 0.22, w: 0.05 / Math.sqrt(0.2 + dr), s: 0.05 + Math.random() * 0.08 });
+        }
+        builtFor = mobile;
+    }
+
+    function measure() {
+        var r = home.getBoundingClientRect();
+        W = r.width; H = r.height;
+        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        mobile = W < 761;
+        var c = center.getBoundingClientRect();
+        cx = c.left - r.left; cy = c.top - r.top;
+        R = mobile ? Math.max(W * 0.95, 300) : Math.min(W * 0.47, H * 1.05);
+        var es = center.querySelector(".gx-emblem").getBoundingClientRect().width || 200;
+        orbRx = es * (mobile ? 1.15 : 1.12) + (mobile ? 24 : 24);
+        var cp = home.querySelector(".gx-copy").getBoundingClientRect();
+        copyR = cp.left - r.left + Math.min(cp.width, 500);
+        if (builtFor !== mobile) build();
+        bgs = [];
+        for (var q = 0; q < 320; q++) {
+            bgs.push({ x: Math.random() * W, y: Math.random() * H, s: Math.random() < 0.9 ? 1 : 1.8, a: 0.25 + Math.random() * 0.55, f: 0.6 + Math.random() * 1.6, p: Math.random() * 6.283, d: 0.3 + Math.random() });
+        }
+    }
+
+    function draw(now, dt) {
+        ctx.clearRect(0, 0, W, H);
+        var tilt = 0.8 + cur.y * 0.16 - (mobile ? 0.1 : 0);
+        var roll = -0.28 + cur.x * 0.12;
+        var ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(roll), sr = Math.sin(roll);
+        var FOV = 3.2 * R, k, s, x0, y0, z0, y1, z1, kk, sx, sy;
+        ctx.globalCompositeOperation = "lighter";
+
+        for (k = 0; k < bgs.length; k++) {
+            s = bgs[k];
+            var tw = reduce ? 1 : 0.55 + 0.45 * Math.sin(now / 1000 * s.f + s.p);
+            ctx.fillStyle = "rgba(255,244,225," + (s.a * tw).toFixed(3) + ")";
+            ctx.fillRect(s.x - cur.x * s.d * 10, s.y - cur.y * s.d * 8, s.s, s.s);
+        }
+
+        ctx.save();
+        ctx.translate(cx, cy); ctx.rotate(roll); ctx.scale(1, 0.55 + 0.45 * ct);
+        ctx.globalAlpha = 0.18;
+        ctx.drawImage(SP_GOLD, -R * 0.95, -R * 0.95, R * 1.9, R * 1.9);
+        ctx.restore();
+
+        for (k = 0; k < neb.length; k++) {
+            s = neb[k];
+            if (!reduce) s.th += s.w * dt;
+            x0 = s.r * Math.cos(s.th) * R; y0 = s.r * Math.sin(s.th) * R;
+            y1 = y0 * ct; z1 = y0 * st;
+            kk = FOV / (FOV - z1);
+            sx = x0 * kk; sy = y1 * kk;
+            var size = s.s * R * 2 * kk;
+            ctx.globalAlpha = 0.07;
+            ctx.drawImage(s.blue ? SP_BLUE : SP_GOLD, cx + sx * cr - sy * sr - size / 2, cy + sx * sr + sy * cr - size / 2, size, size);
+        }
+
+        ctx.save();
+        ctx.translate(cx, cy); ctx.rotate(roll); ctx.scale(1, 0.6 + 0.4 * ct);
+        ctx.globalAlpha = 0.75;
+        ctx.drawImage(SP_CORE, -R * 0.45, -R * 0.45, R * 0.9, R * 0.9);
+        ctx.globalAlpha = 0.9;
+        ctx.drawImage(SP_CORE, -R * 0.12, -R * 0.12, R * 0.24, R * 0.24);
+        ctx.restore();
+
+        ctx.globalCompositeOperation = "source-over";
+        for (k = 0; k < dust.length; k++) {
+            s = dust[k];
+            if (!reduce) s.th += s.w * dt;
+            x0 = s.r * Math.cos(s.th) * R; y0 = s.r * Math.sin(s.th) * R;
+            y1 = y0 * ct; z1 = y0 * st;
+            kk = FOV / (FOV - z1);
+            sx = x0 * kk; sy = y1 * kk;
+            var dsz = s.s * R * 2 * kk;
+            ctx.globalAlpha = 0.38;
+            ctx.drawImage(SP_DARK, cx + sx * cr - sy * sr - dsz / 2, cy + sx * sr + sy * cr - dsz / 2, dsz, dsz);
+        }
+        ctx.globalCompositeOperation = "lighter";
+        ctx.globalAlpha = 1;
+        for (k = 0; k < stars.length; k++) {
+            s = stars[k];
+            if (!reduce) s.th += s.w * dt;
+            x0 = s.r * Math.cos(s.th) * R; y0 = s.r * Math.sin(s.th) * R; z0 = s.z * R;
+            y1 = y0 * ct - z0 * st; z1 = y0 * st + z0 * ct;
+            kk = FOV / (FOV - z1);
+            sx = x0 * kk; sy = y1 * kk;
+            XS[k] = cx + sx * cr - sy * sr;
+            YS[k] = cy + sx * sr + sy * cr;
+        }
+        var b, list, j, col, big;
+        for (b = 0; b < 36; b++) {
+            list = buckets[b]; if (!list.length) continue;
+            big = b % 2; col = COLORS[Math.floor(b / 6)];
+            ctx.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + ALPHAS[Math.floor((b % 6) / 2)] + ")";
+            var sz = big ? 1.8 : 1.05;
+            for (j = 0; j < list.length; j++) ctx.fillRect(XS[list[j]], YS[list[j]], sz, sz);
+        }
+
+        /* orbit rings */
+        var ry = orbRx * ct;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(245,215,110,0.26)";
+        ctx.beginPath(); ctx.ellipse(cx, cy, orbRx, ry, roll, 0, 6.283); ctx.stroke();
+        ctx.strokeStyle = "rgba(245,215,110,0.1)";
+        ctx.beginPath(); ctx.ellipse(cx, cy, orbRx * 1.55, ry * 1.55, roll, 0, 6.283); ctx.stroke();
+
+        /* orbiting words */
+        if (!paused && !reduce) orbitA += dt * 0.1;
+        var hr = home.getBoundingClientRect(), ox, oy;
+        void hr;
+        for (k = 0; k < nodes.length; k++) {
+            var th = orbitA + k * Math.PI / 2;
+            ox = Math.cos(th) * orbRx; oy = Math.sin(th) * ry;
+            var dep = Math.sin(th);
+            var X = cx + ox * cr - oy * sr, Y = cy + ox * sr + oy * cr;
+            var sc = 0.84 + 0.2 * dep;
+            nodes[k].style.transform = "translate3d(" + X.toFixed(1) + "px," + Y.toFixed(1) + "px,0) translate(-50%,-50%) scale(" + sc.toFixed(3) + ")";
+            nodes[k].style.opacity = mobile ? "" : Math.max(0, Math.min(1, (X - copyR - 20) / 70)).toFixed(2);
+            nodes[k].style.zIndex = dep > 0 ? 6 : 2;
+            nodes[k].style.filter = dep > 0 ? "none" : "brightness(0.65)";
+        }
+
+        /* rare shooting star */
+        if (!reduce) {
+            if (!meteor && now > nextMeteor && !mobile) {
+                meteor = { x: W * (0.55 + Math.random() * 0.4), y: H * (0.05 + Math.random() * 0.25), vx: -W * 0.55, vy: H * 0.3, life: 0 };
+                nextMeteor = now + 8000 + Math.random() * 9000;
+            }
+            if (meteor) {
+                meteor.life += dt; meteor.x += meteor.vx * dt; meteor.y += meteor.vy * dt;
+                var a = Math.max(0, 1 - meteor.life / 0.9);
+                var g = ctx.createLinearGradient(meteor.x, meteor.y, meteor.x - meteor.vx * 0.12, meteor.y - meteor.vy * 0.12);
+                g.addColorStop(0, "rgba(255,244,225," + (0.9 * a) + ")");
+                g.addColorStop(1, "rgba(255,244,225,0)");
+                ctx.strokeStyle = g; ctx.lineWidth = 1.4;
+                ctx.beginPath(); ctx.moveTo(meteor.x, meteor.y); ctx.lineTo(meteor.x - meteor.vx * 0.12, meteor.y - meteor.vy * 0.12); ctx.stroke();
+                if (meteor.life > 0.9) meteor = null;
+            }
+        }
+        ctx.globalCompositeOperation = "source-over";
+        ctx.globalAlpha = 1;
+    }
+
+    function loop(now) {
+        var dt = Math.min(0.05, (now - last) / 1000); last = now;
+        var r = home.getBoundingClientRect();
+        if (!doc.hidden && r.bottom > 0 && r.top < window.innerHeight) {
+            cur.x += (tgt.x - cur.x) * 0.06; cur.y += (tgt.y - cur.y) * 0.06;
+            obj.style.transform = "rotateX(" + (-cur.y * 18 + Math.sin(now / 1700) * 4).toFixed(2) + "deg) rotateY(" + (cur.x * 26 + Math.sin(now / 2300) * 8).toFixed(2) + "deg)";
+            draw(now, dt);
+        }
+        requestAnimationFrame(loop);
+    }
+
+    function aim(px, py) {
+        var r = home.getBoundingClientRect();
+        tgt.x = Math.max(-1, Math.min(1, ((px - r.left) / r.width) * 2 - 1));
+        tgt.y = Math.max(-1, Math.min(1, ((py - r.top) / r.height) * 2 - 1));
+    }
+    if (!reduce) {
+        if (fine) {
+            home.addEventListener("mousemove", function (e) { aim(e.clientX, e.clientY); });
+            home.addEventListener("mouseleave", function () { tgt.x = tgt.y = 0; });
+        }
+        home.addEventListener("touchmove", function (e) { if (e.touches[0]) aim(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+        home.addEventListener("touchend", function () { tgt.x = tgt.y = 0; }, { passive: true });
+    }
+
+    nodes.forEach(function (el) {
+        el.addEventListener("mouseenter", function () { paused = true; });
+        el.addEventListener("mouseleave", function () { paused = false; });
+        el.addEventListener("focus", function () { paused = true; });
+        el.addEventListener("blur", function () { paused = false; });
+        el.addEventListener("click", function (e) {
+            var h = el.getAttribute("href");
+            if (!h || h.charAt(0) === "#" || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || reduce) return;
+            e.preventDefault();
+            home.classList.add("gx-leave");
+            setTimeout(function () { window.location.href = h; }, 420);
+        });
+    });
+    [].forEach.call(home.querySelectorAll(".gx-btn-ghost"), function (el) {
+        el.addEventListener("click", function (e) {
+            var h = el.getAttribute("href");
+            if (!h || h.charAt(0) === "#" || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || reduce) return;
+            e.preventDefault();
+            home.classList.add("gx-leave");
+            setTimeout(function () { window.location.href = h; }, 420);
+        });
+    });
+    window.addEventListener("pageshow", function () { home.classList.remove("gx-leave"); });
+
+    function refresh() { measure(); if (reduce) draw(performance.now(), 0); }
+    window.addEventListener("resize", refresh);
+    measure();
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(refresh);
+    if (reduce) draw(performance.now(), 0); else requestAnimationFrame(loop);
+})();
+    </script>
+</body>
+</html>
