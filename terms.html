@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms &amp; Privacy | Bharat Nexus</title>
+    <meta name="description" content="Bharat Nexus Terms of Use, Zero-Login Privacy Promise, and Educational Disclaimers.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071326'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Georgia,serif' font-size='36' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .terms-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 16, 34, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        body.light-mode .terms-header {
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .terms-nav-left {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-pill-btn {
+            background: var(--bg-card);
+            color: var(--gold-soft);
+            border: 1px solid var(--border-gold);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .nav-pill-btn:hover {
+            background: var(--gold);
+            color: #061022;
+        }
+
+        .terms-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 44px 5% 60px 5%;
+        }
+
+        .terms-hero {
+            text-align: center;
+            margin-bottom: 34px;
+        }
+
+        .terms-hero h1 {
+            color: var(--gold-soft);
+            font-size: clamp(26px, 4vw, 38px);
+            margin-bottom: 10px;
+        }
+
+        .terms-hero p {
+            color: var(--text-muted);
+            font-size: 15.5px;
+        }
+
+        .terms-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .terms-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .terms-card h2 {
+            color: var(--gold-soft);
+            font-size: 19px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .terms-card p,
+        .terms-card li {
+            color: var(--text-main);
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .terms-card ul {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-watermark-7" aria-hidden="true"><span>7</span></div>
+
+    <header class="terms-header">
+        <div class="terms-nav-left">
+            <a href="index.html" class="nav-pill-btn" id="t-back-home">← Smart Citizen Hub</a>
+            <a href="library.html" class="nav-pill-btn" id="t-go-lib">📚 Knowledge Library</a>
+        </div>
+
+        <div class="topbar-controls">
+            <button type="button" id="t-font-btn" class="utility-btn">A+</button>
+            <button type="button" id="t-theme-btn" class="utility-btn">☀</button>
+            <div class="lang-switcher">
+                <button type="button" class="lang-btn active" data-lang="en">EN</button>
+                <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+                <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="terms-container">
+        <div class="terms-hero">
+            <h1 id="t-title">Terms, Privacy &amp; Trust</h1>
+            <p id="t-sub">Clear, honest commitments for every person who uses Bharat Nexus.</p>
+        </div>
+
+        <div id="terms-content" class="terms-stack"></div>
+    </main>
+
+    <footer>
+        <h3>BHARAT NEXUS</h3>
+        <p>ज्ञान • संधी • प्रगती • विश्वास</p>
+        <p class="footer-links">
+            <a href="index.html" id="tf-home">Smart Citizen Hub</a> •
+            <a href="library.html" id="tf-lib">Knowledge Library</a>
+        </p>
+        <p class="copyright">© 2027 Bharat Nexus. Public Utility &amp; Learning Initiative.</p>
+    </footer>
+
+    <script>
+        (function () {
+            "use strict";
+
+            let lang = "en";
+
+            const content = {
+                en: {
+                    backHome: "← Smart Citizen Hub",
+                    goLib: "📚 Knowledge Library",
+                    title: "Terms, Privacy & Trust",
+                    sub: "Clear, honest commitments for every person who uses Bharat Nexus.",
+                    cards: [
+                        {
+                            h: "1. Zero Login & Complete Privacy",
+                            p: "Bharat Nexus does not ask you to sign up, log in, or share your mobile number, OTP, Aadhaar, PAN, or bank details.",
+                            list: [
+                                "Everything you enter in the Resume & Biodata Maker stays 100% locally inside your own browser on your device.",
+                                "We have no user tracking servers, no login database, and we never sell or upload personal details.",
+                                "Optional settings (language choice, Light Mode, A+ text size, and saved Library bookmarks) are stored strictly in your own browser's localStorage and can be cleared anytime."
+                            ]
+                        },
+                        {
+                            h: "2. Free of Cost & Non-Commercial Access",
+                            p: "All tools on Bharat Nexus—including the Resume PDF export, EMI & Savings Dashboard, Online Safety Guide, and Knowledge Library—are provided free of cost for students, families, and senior citizens."
+                        },
+                        {
+                            h: "3. Educational & Informational Disclaimer",
+                            p: "All calculators, study notes, and financial literacy guides are created strictly for general education and awareness:",
+                            list: [
+                                "The EMI & Savings Dashboard provides standard mathematical estimates—always confirm final loan terms directly with your bank.",
+                                "Financial literacy articles in the Knowledge Library explain basic concepts only and do not constitute stock tips or investment advice.",
+                                "Bharat Nexus is an independent public-learning project and is not affiliated with any government agency or stock exchange."
+                            ]
+                        },
+                        {
+                            h: "4. Created With Care for 2027",
+                            p: "Bharat Nexus is built by Founder Krishna Pawar together with Akshada Mahale (Guide & Mentor), Aadesh Salve & Vishal Aadke (Project Researchers), and Ritesh Jaware (Community & Outreach Lead)."
+                        }
+                    ]
+                },
+                hi: {
+                    backHome: "← स्मार्ट सिटीजन हब",
+                    goLib: "📚 नॉलेज लाइब्रेरी",
+                    title: "नियम, गोपनीयता और विश्वास",
+                    sub: "भारत नेक्सस का उपयोग करने वाले हर व्यक्ति के लिए स्पष्ट और ईमानदार जानकारी।",
+                    cards: [
+                        {
+                            h: "1. कोई लॉगिन नहीं और पूर्ण गोपनीयता",
+                            p: "भारत नेक्सस आपसे कभी भी साइन-अप, मोबाइल नंबर, OTP, आधार, पैन या बैंक जानकारी नहीं मांगता।",
+                            list: [
+                                "रिज्यूमे मेकर में भरी गई आपकी जानकारी 100% केवल आपके अपने डिवाइस/ब्राउज़र में रहती है।",
+                                "हम किसी भी प्रकार का व्यक्तिगत डेटा सेव या अपलोड नहीं करते।",
+                                "भाषा, लाइट मोड, A+ और बुकमार्क की सेटिंग्स केवल आपके अपने ब्राउज़र में सुरक्षित रहती हैं।"
+                            ]
+                        },
+                        {
+                            h: "2. पूरी तरह मुफ्त सेवा",
+                            p: "रिज्यूमे PDF डाउनलोड, EMI व बचत डैशबोर्ड, ऑनलाइन सुरक्षा गाइड और नॉलेज लाइब्रेरी सहित सभी सुविधाएं छात्रों, परिवारों और बुजुर्गों के लिए मुफ्त हैं।"
+                        },
+                        {
+                            h: "3. शैक्षणिक अस्वीकरण (Disclaimer)",
+                            p: "यहां दी गई सभी गणनाएं और गाइड केवल सामान्य शिक्षा और जागरूकता के लिए हैं:",
+                            list: [
+                                "EMI व बचत डैशबोर्ड गणितीय अनुमान दिखाता है—अंतिम लोन शर्तें हमेशा अपने बैंक से जांचें।",
+                                "लाइब्रेरी में दी गई बाजार जानकारी केवल शिक्षा के लिए है; हम कोई शेयर टिप्स या निवेश सलाह नहीं देते।",
+                                "भारत नेक्सस एक स्वतंत्र जन-शिक्षा पहल है, न कि कोई सरकारी वेबसाइट।"
+                            ]
+                        },
+                        {
+                            h: "4. 2027 के लिए निर्मित",
+                            p: "भारत नेक्सस को संस्थापक कृष्ण पवार ने अक्षदा महाले (गाइड और मेंटर), आदेश साल्वे व विशाल आडके (प्रोजेक्ट रिसर्चर), और रितेश जवारे (कम्युनिटी व आउटरीच लीड) के साथ मिलकर बनाया है।"
+                        }
+                    ]
+                },
+                mr: {
+                    backHome: "← स्मार्ट सिटीझन हब",
+                    goLib: "📚 नॉलेज लायब्ररी",
+                    title: "नियम, गोपनीयता आणि विश्वास",
+                    sub: "भारत नेक्सस वापरणाऱ्या प्रत्येक व्यक्तीसाठी स्पष्ट व प्रामाणिक माहिती.",
+                    cards: [
+                        {
+                            h: "१. लॉगिन नाही आणि संपूर्ण गोपनीयता",
+                            p: "भारत नेक्सस तुम्हाला कधीही साईन-अप, मोबाईल नंबर, OTP, आधार, पॅन किंवा बँक माहिती विचारत नाही.",
+                            list: [
+                                "रिझ्युमे मेकरमध्ये तुम्ही लिहिलेली सर्व माहिती १००% फक्त तुमच्याच डिव्हाइसवरील ब्राउझरमध्ये राहते.",
+                                "आम्ही कोणताही वैयक्तिक डेटा सेव्ह किंवा अपलोड करत नाही.",
+                                "तुमची भाषा, लाईट मोड, A+ आणि सेव्ह केलेले बुकमार्क्स फक्त तुमच्याच ब्राउझरमध्ये राहतात."
+                            ]
+                        },
+                        {
+                            h: "२. पूर्णपणे मोफत सेवा",
+                            p: "रिझ्युमे PDF, EMI व बचत डॅशबोर्ड, ऑनलाईन सुरक्षा गाइड आणि नॉलेज लायब्ररी ही सर्व साधने विद्यार्थी, कुटुंबे आणि ज्येष्ठ नागरिकांसाठी मोफत आहेत."
+                        },
+                        {
+                            h: "३. शैक्षणिक सूचना (Disclaimer)",
+                            p: "येथील सर्व गणिते आणि माहिती केवळ सामान्य शिक्षण व जनजागृतीसाठी आहेत:",
+                            list: [
+                                "EMI आणि बचत डॅशबोर्ड अंदाजित गणित दाखवतो—अंतिम कर्ज अटी नेहमी तुमच्या बँकेकडून तपासा.",
+                                "लायब्ररीमधील बाजारविषयक माहिती फक्त शिक्षणासाठी आहे; आम्ही कोणतेही शेअर टिप्स किंवा गुंतवणूक सल्ला देत नाही.",
+                                "भारत नेक्सस हा एक स्वतंत्र सार्वजनिक उपक्रम आहे, ही सरकारी वेबसाईट नाही."
+                            ]
+                        },
+                        {
+                            h: "४. २०२७ साठी निर्मित",
+                            p: "भारत नेक्ससची निर्मिती संस्थापक कृष्ण पवार यांनी अक्षदा महाले (गाइड व मेंटर), आदेश साळवे व विशाल आडके (प्रोजेक्ट रिसर्चर), आणि रितेश जवारे (कम्युनिटी व आउटरीच लीड) यांच्या सहकार्याने केली आहे."
+                        }
+                    ]
+                }
+            };
+
+            function render(newLang) {
+                if (!content[newLang]) newLang = "en";
+                lang = newLang;
+                document.documentElement.lang = lang;
+                try { localStorage.setItem("bn_lang", lang); } catch (err) {}
+
+                const d = content[lang];
+                document.getElementById("t-back-home").textContent = d.backHome;
+                document.getElementById("t-go-lib").textContent = d.goLib;
+                document.getElementById("t-title").textContent = d.title;
+                document.getElementById("t-sub").textContent = d.sub;
+
+                document.querySelectorAll(".lang-btn").forEach((b) => {
+                    b.classList.toggle("active", b.dataset.lang === lang);
+                });
+
+                document.getElementById("terms-content").innerHTML = d.cards.map((c) => `
+                    <article class="terms-card">
+                        <h2>${c.h}</h2>
+                        <p>${c.p}</p>
+                        ${c.list ? `<ul>${c.list.map((item) => `<li>${item}</li>`).join("")}</ul>` : ""}
+                    </article>
+                `).join("");
+            }
+
+            function init() {
+                try {
+                    const savedLang = localStorage.getItem("bn_lang");
+                    if (savedLang && content[savedLang]) lang = savedLang;
+                    if (localStorage.getItem("bn_large_text") === "1") {
+                        document.body.classList.add("large-text");
+                        document.getElementById("t-font-btn").classList.add("active");
+                    }
+                    if (localStorage.getItem("bn_light_mode") === "1") {
+                        document.body.classList.add("light-mode");
+                        document.getElementById("t-theme-btn").textContent = "🌙";
+                    }
+                } catch (err) {}
+
+                document.querySelectorAll(".lang-btn").forEach((b) => {
+                    b.addEventListener("click", () => render(b.dataset.lang));
+                });
+
+                document.getElementById("t-font-btn").addEventListener("click", function () {
+                    const isLarge = document.body.classList.toggle("large-text");
+                    this.classList.toggle("active", isLarge);
+                    try { localStorage.setItem("bn_large_text", isLarge ? "1" : "0"); } catch (err) {}
+                });
+
+                document.getElementById("t-theme-btn").addEventListener("click", function () {
+                    const isLight = document.body.classList.toggle("light-mode");
+                    this.textContent = isLight ? "🌙" : "☀";
+                    try { localStorage.setItem("bn_light_mode", isLight ? "1" : "0"); } catch (err) {}
+                });
+
+                render(lang);
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
